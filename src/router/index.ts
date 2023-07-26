@@ -29,14 +29,29 @@ const install = {
   ]
 }
 
+// 错误路由
+const error = [
+  {
+    path: '/403',
+    name: '403',
+    component: () => import('@/views/error/403.vue'),
+    meta: { title: '403' }
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/error/404.vue'),
+    meta: { title: '404' }
+  }
+]
+
 const routes = [
   index,
   install,
+  ...error,
   {
-    // 404 路由
     path: '/:pathMatch(.*)*',
-    name: 'not-found',
-    component: () => import('@/views/error/404.vue')
+    redirect: '/404'
   }
 ]
 
