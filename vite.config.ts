@@ -22,6 +22,8 @@ export default defineConfig({
     }),
     Components({
       dts: 'types/unplugin/components.d.ts',
+      // 自动导入的位置
+      dirs: ['src/components'],
       resolvers: [ElementPlusResolver()]
     })
   ],

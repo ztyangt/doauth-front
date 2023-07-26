@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>首页</div>
+  <div>
+    <lottie-item name="vip" />
+  </div>
   <RouterLink to="/install">安装</RouterLink>
 </template>
 
