@@ -1,6 +1,6 @@
 <template>
   安装引导布局
-  <router-view></router-view>
+  <router-view />
 </template>
 
 <script setup lang="ts"></script>

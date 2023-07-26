@@ -1,8 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>首页</div>
-  <RouterLink to="/install">安装</RouterLink>
+  <div>404</div>
 </template>
 
 <style lang="scss" scoped></style>

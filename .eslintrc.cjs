@@ -16,7 +16,7 @@ module.exports = {
     "vue/multi-word-component-names": [
       "error",
       {
-        ignores: [""], //需要忽略的组件名
+        ignores: ["404", "403"], //需要忽略的组件名
       },
     ],
     "no-console": process.env.NODE_ENV === 'production' ? 'warn' : 'off',

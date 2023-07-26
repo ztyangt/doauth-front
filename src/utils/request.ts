@@ -39,7 +39,7 @@ class Request {
     // 响应拦截器
     this.http.interceptors.response.use(
       (response) => {
-        return response
+        return response.data
       },
       (error) => {
         // 响应错误
@@ -48,11 +48,7 @@ class Request {
     )
   }
 
-  private request<T>(
-    url: string,
-    method: Method,
-    data: any = {}
-  ): Promise<AxiosResponse<RES<T>, any>> {
+  private request<T>(url: string, method: Method, data: any = {}): Promise<RES<T>> {
     return this.http({
       url,
       method,
