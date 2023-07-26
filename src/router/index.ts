@@ -61,11 +61,10 @@ router.beforeEach(async (to, from, next) => {
   if (to.path.startsWith('/install')) {
     const { code, msg } = await useInstallApi.check()
     if (code !== 200) {
-      next('/')
       ElMessage.error(msg)
+      next('/')
       return
     }
-    next()
   }
   next()
 })
