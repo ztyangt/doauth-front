@@ -58,17 +58,17 @@ class Request {
     })
   }
 
-  public get<T>(url: string, method: Method, data?: any) {
-    return this.request<T>(url, method, data)
+  public get<T>(url: string, data?: any) {
+    return this.request<T>(url, 'get', data)
   }
-  public post<T>(url: string, method: Method, data?: any) {
-    return this.request<T>(url, method, data)
+  public post<T>(url: string, data?: any) {
+    return this.request<T>(url, 'post', data)
   }
-  public delete<T>(url: string, method: Method, data?: any) {
-    return this.request<T>(url, method, data)
+  public delete<T>(url: string, data?: any) {
+    return this.request<T>(url, 'delete', data)
   }
-  public put<T>(url: string, method: Method, data?: any) {
-    return this.request<T>(url, method, data)
+  public put<T>(url: string, data?: any) {
+    return this.request<T>(url, 'put', data)
   }
 }
 

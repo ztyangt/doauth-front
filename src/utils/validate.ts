@@ -27,6 +27,15 @@ export const isUpperCase = (value: string): boolean => {
 }
 
 /**
+ * 判断是否是英文字母
+ * @param value 字母
+ */
+export const isAlpha = (value: string): boolean => {
+  const reg = /^[a-zA-Z]+$/
+  return reg.test(value)
+}
+
+/**
  * 判断是否是大写字母开头
  * @param value 字母
  */

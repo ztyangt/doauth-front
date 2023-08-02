@@ -37,7 +37,6 @@ nextTick(async () => {
 const method = {
   init: async () => {
     const data = await axios.get(`/assets/json/lottie/${props.name}.json`)
-    console.log('data: ', data.data)
     if (useHelper.is.empty(data)) return
     state.lottie = lottie.loadAnimation({
       container: lottieRef.value,

@@ -1,0 +1,90 @@
+
+// 全局主题变量配置 误删 ！！！
+$white-color: #fff;
+$black-color: #363a44;
+
+// 主题色
+$base-primary: #5a7dff;
+$base-success: #52c41a;
+$base-warning: #faad14;
+$base-danger: #e64340;
+$base-error: #db2828;
+$base-info: #909399;
+
+//圆角
+$base-border-radius: 4px;
+
+
+// 日夜间主题模式
+$curTheme: light;
+
+$themes: (
+  light: (
+    bgColor: #f5f8fa,
+    textColor: #4e5358,
+    pureColor: $white-color,
+    keyColor: #333333,
+    mutedColor: #777,
+    titleColor: #363636,
+  ),
+  dark:(
+    bgColor: #282b34,
+    textColor: #e5eef7,
+    pureColor: $black-color,
+    keyColor: #f8fafc,
+    mutedColor: #b4b6bb,
+    titleColor: #f2f6fc,
+  )
+);
+
+$breakpoints: (
+  phone: (320px, 480px),
+  pad: (481px,768px),
+  laptop: (769px, 1024px),
+  desktop: (1025px, 1200px),
+  xs: (0, 768px),
+  sm: 769px,
+  pure: 900px,
+  md: 1025px,
+  lg:  1201px,
+);
+
+
+@function getVal($key) {
+  $themeMap: map-get($themes, $curTheme);
+  @return map-get($themeMap, $key)
+}
+
+@mixin useTheme(){
+  @each $key, $value in $themes {
+    $curTheme: $key !global;
+    html.#{$key} & {
+      @content;
+    }
+  }
+}
+
+@mixin respond-to($breakname) {
+  $bp: map-get($breakpoints,$breakname);
+  @if type-of($bp) == 'list' {
+    $min: nth($bp, 1);
+    $max: nth($bp, 2);
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+  @else {
+    @media (min-width: $bp) {
+      @content;
+    }
+  }
+}
+
+// 模糊背景
+@mixin blurBg {
+  backdrop-filter: saturate(5) blur(20px);
+  @include useTheme {
+    background-color: rgba($color: getVal(pureColor), $alpha: 0.8)
+  }
+  background: rgb(255 255 255 / 80%);
+}

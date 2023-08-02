@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import { useInstallApi } from '@/api/install'
+import LayBase from '@/layouts/LayBase.vue'
+import LayInstall from '@/layouts/LayInstall.vue'
 
 const index = {
   path: '/',
-  component: () => import('@/layouts/LayBase.vue'),
+  component: LayBase,
   children: [
     {
       path: '/',
@@ -17,7 +19,7 @@ const index = {
 // 安装引导
 const install = {
   path: '/install',
-  component: () => import('@/layouts/LayInstall.vue'),
+  component: LayInstall,
   meta: { title: '安装引导' },
   children: [
     {

@@ -1,0 +1,83 @@
+$NSRange :0, 10 ,20, 25, 33, 50, 75, 100;
+$NSValue :0, 10% ,20%, 25%, 33.33%, 50%, 75%, 100%;
+$direction: left, top, right, bottom;
+
+
+
+@for $i from 1 through length($NSRange) {
+  .w-#{nth($NSRange, $i)}{
+    width: #{nth($NSValue, $i)} ;
+  }
+  .h-#{nth($NSRange, $i)}{
+    height: #{nth($NSValue, $i)};
+  }
+}
+
+@for $i from 12 through 16 {
+  .fs-#{$i}{
+    font-size: #{$i}px ;
+  }
+}
+
+@for $i from 0 through 5 {
+  .m-#{$i}{
+    margin: ($i * 0.5) + rem;
+  }
+  .ml-#{$i}{
+    margin-left: ($i * 0.5) + rem;
+  }
+  .mt-#{$i}{
+    margin-top: ($i * 0.5) + rem;
+  }
+  .mr-#{$i}{
+    margin-right: ($i * 0.5) + rem;
+  }
+  .mb-#{$i}{
+    margin-bottom: ($i * 0.5) + rem;
+  }
+  .mx-#{$i}{
+    margin-left: ($i * 0.5) + rem;
+    margin-right: ($i * 0.5) + rem;
+  }
+  .my-#{$i}{
+    margin-top: ($i * 0.5) + rem;
+    margin-bottom: ($i * 0.5) + rem;
+  }
+  .p-#{$i}{
+    padding: ($i * 0.5) + rem;
+  }
+  .pl-#{$i}{
+    padding-left: ($i * 0.5) + rem;
+  }
+  .pt-#{$i}{
+    padding-top: ($i * 0.5) + rem;
+  }
+  .pr-#{$i}{
+    padding-right: ($i * 0.5) + rem;
+  }
+  .pb-#{$i}{
+    padding-bottom: ($i * 0.5) + rem;
+  }
+  .px-#{$i}{
+    padding-left: ($i * 0.5) + rem;
+    padding-right: ($i * 0.5) + rem;
+  }
+  .py-#{$i}{
+    padding-top: ($i * 0.5) + rem;
+    padding-bottom: ($i * 0.5) + rem;
+  }
+}
+
+
+@mixin ellipsis($line) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@for $i from 1 through 3 {
+  .h-#{$i}x{
+    @include ellipsis($i)
+  }
+}
