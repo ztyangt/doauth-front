@@ -12,7 +12,7 @@ $base-error: #db2828;
 $base-info: #909399;
 
 //圆角
-$base-border-radius: 4px;
+$base-border-radius: 5px;
 
 
 // 日夜间主题模式
@@ -84,7 +84,7 @@ $breakpoints: (
 @mixin blurBg {
   backdrop-filter: saturate(5) blur(20px);
   @include useTheme {
-    background-color: rgba($color: getVal(pureColor), $alpha: 0.8)
+    background-color: rgba($color: getVal(pureColor), $alpha: 0.7)
   }
-  background: rgb(255 255 255 / 80%);
+  background: rgb(255 255 255 / 70%);
 }

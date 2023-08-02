@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { useHelper } from '@/utils/helper'
+
 const config = reactive({
   max: 3
+})
+
+onBeforeMount(() => {
+  const theme = useHelper.get.cookie('theme')
+  console.log('theme: ', theme)
 })
 </script>
 

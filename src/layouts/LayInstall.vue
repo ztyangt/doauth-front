@@ -8,23 +8,8 @@
 
 <style lang="scss">
 .install-view {
-  background-color: red;
   min-height: 100vh;
-  background-image: linear-gradient(
-    to right top,
-    #d16ba5,
-    #c777b9,
-    #ba83ca,
-    #aa8fd8,
-    #9a9ae1,
-    #919be5,
-    #879de9,
-    #7c9eec,
-    #7797ef,
-    #748ff2,
-    #7386f4,
-    #747df5
-  );
+  background-image: linear-gradient(to right top, #6a48e4, #748ff2, #7386f4, #747df5);
   background-size: 400%;
   animation: bgmove 20s infinite;
 }

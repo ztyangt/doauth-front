@@ -11,6 +11,7 @@ import ElementPlus from 'unplugin-element-plus/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -32,7 +33,7 @@ export default defineConfig({
     Components({
       dts: 'types/unplugin/components.d.ts',
       // 自动导入的位置
-      dirs: ['src/components'],
+      dirs: ['src/components', 'src/views/**/components', 'src/layouts/components'],
       resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
     }),
     ElementPlus({
