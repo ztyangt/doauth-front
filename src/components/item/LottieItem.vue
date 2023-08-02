@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { useHelper } from '@/utils/helper'
 import lottie from 'lottie-web'
+import type { AnimationItem } from 'lottie-web'
 import type { RendererType } from 'lottie-web'
 
 export interface Props {
@@ -25,20 +26,18 @@ const props = withDefaults(defineProps<Props>(), {
   data: {}
 })
 
-const state = reactive({
-  lottie: null
-})
+const lottieData = ref<AnimationItem>()
 
 nextTick(async () => {
   await method.init()
-  state.lottie.play()
+  lottieData.value && lottieData.value.play()
 })
 
 const method = {
   init: async () => {
     const data = await axios.get(`/assets/json/lottie/${props.name}.json`)
     if (useHelper.is.empty(data)) return
-    state.lottie = lottie.loadAnimation({
+    lottieData.value = lottie.loadAnimation({
       container: lottieRef.value,
       autoplay: props.auto,
       loop: props.loop,
