@@ -65,8 +65,8 @@ const error = [
 
 const routes = [
   index,
-  admin,
   install,
+  admin,
   ...error,
   {
     path: '/:pathMatch(.*)*',
@@ -96,6 +96,15 @@ router.beforeEach(async (to, from, next) => {
     const { code, msg } = await useInstallApi.check()
     if (code !== 200) {
       ElMessage.error(msg)
+      next('/')
+      return
+    }
+  }
+
+  // 检查是否以 /admin 开头
+  if (to.path.startsWith('/admin')) {
+    const adminStore = useAdminStore()
+    if (!adminStore.hasLogin()) {
       next('/')
       return
     }

@@ -19,7 +19,7 @@ class CommApi {
    * @returns
    */
   public login(account: string, password: string) {
-    return request.post<any>('api/comm/login', {
+    return request.post<Auth.Login>('api/comm/login', {
       account,
       password
     })

@@ -76,6 +76,7 @@
       </el-header>
 
       <el-main>
+        <el-button type="danger" @click="logOut">退出登录</el-button>
         <el-scrollbar>
           <el-table :data="tableData">
             <el-table-column prop="date" label="Date" width="140" />
@@ -98,6 +99,12 @@ const item = {
   address: 'No. 189, Grove St, Los Angeles'
 }
 const tableData = ref(Array.from({ length: 20 }).fill(item))
+const router = useRouter()
+
+const logOut = () => {
+  useAdminStore().clear()
+  router.replace('/')
+}
 </script>
 
 <style scoped>

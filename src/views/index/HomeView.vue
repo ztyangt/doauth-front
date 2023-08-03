@@ -3,6 +3,16 @@ import VanillaTilt from 'vanilla-tilt'
 const tiltRef = ref()
 
 const login = ref<boolean>(false)
+const router = useRouter()
+
+const handleStart = () => {
+  const adminStore = useAdminStore()
+  if (adminStore.hasLogin()) {
+    router.push('/admin')
+  } else {
+    login.value = true
+  }
+}
 
 onMounted(() => {
   VanillaTilt.init(tiltRef.value, {
@@ -20,7 +30,7 @@ onMounted(() => {
 
       <div class="flex-center mt-4 px-4">
         <el-button type="success" round class="w-50">授权查询</el-button>
-        <el-button type="primary" round class="w-50" @click="login = true">立即使用</el-button>
+        <el-button type="primary" round class="w-50" @click="handleStart">立即使用</el-button>
       </div>
     </div>
   </div>

@@ -5,6 +5,8 @@ defineProps<{
   visible: boolean
 }>()
 
+const router = useRouter()
+
 const loginFormRef = ref<FormInstance>()
 const isLoading = ref<boolean>(false)
 
@@ -24,19 +26,30 @@ const rules = reactive<FormRules>({
   password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
 })
 
-// 登录
-const handleLogin = async () => {
-  const formEl = loginFormRef.value
-  if (!formEl) return
-  await formEl.validate(async (valid) => {
-    if (valid) {
-      isLoading.value = true
-      const login = await useCommApi.login(userForm.account, userForm.password)
-      isLoading.value = false
-      netMessage(login)
-      // siteStore.$patch({ isLoading: false });
-    }
-  })
+const methods = {
+  /**
+   * 登录
+   */
+  handleLogin: async () => {
+    const formEl = loginFormRef.value
+    if (!formEl) return
+    await formEl.validate(async (valid) => {
+      if (valid) {
+        isLoading.value = true
+        const login = await useCommApi.login(userForm.account, userForm.password)
+        isLoading.value = false
+        netMessage(login)
+        login.code === 200 && methods.afterLogin(login.data)
+      }
+    })
+  },
+
+  afterLogin: (data: Auth.Login) => {
+    const adminStore = useAdminStore()
+    adminStore.$patch({ login: data })
+    useHelper.set.storage('admin', { ...data, time: 7200 })
+    router.push('/admin')
+  }
 }
 </script>
 
@@ -64,7 +77,7 @@ const handleLogin = async () => {
       </el-form-item>
       <el-form-item prop="password">
         <el-input
-          @keyup.enter="handleLogin"
+          @keyup.enter="methods.handleLogin"
           clearable
           show-password
           v-model="userForm.password"
@@ -73,7 +86,13 @@ const handleLogin = async () => {
         />
       </el-form-item>
 
-      <el-button type="primary" round @click="handleLogin" :loading="isLoading" class="w-100 mt-4">
+      <el-button
+        type="primary"
+        round
+        @click="methods.handleLogin"
+        :loading="isLoading"
+        class="w-100 mt-4"
+      >
         {{ isLoading ? '登录中' : '登录' }}
       </el-button>
     </el-form>

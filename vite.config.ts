@@ -25,7 +25,7 @@ export default defineConfig({
     AutoImport({
       // 自动导入
       imports: ['vue', 'vue-router'],
-      dirs: ['src/api', 'src/utils'],
+      dirs: ['src/api', 'src/utils', 'src/stores'],
       // 生成全局类型
       dts: 'types/unplugin/auto-imports.d.ts',
       // element-plus - 自动按需引入
@@ -60,6 +60,6 @@ export default defineConfig({
     assetsDir: 'static'
   },
   esbuild: {
-    drop: ['console', 'debugger']
+    // drop: ['console', 'debugger']
   }
 })

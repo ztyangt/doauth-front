@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { useHelper } from '@/utils/helper'
-
 const config = reactive({
   max: 3
 })
 
 onBeforeMount(() => {
-  const theme = useHelper.get.cookie('themeMode')
-  if (theme) {
-    window.document.documentElement.setAttribute('data-theme', theme)
-  } else {
-    window.document.documentElement.setAttribute('data-theme', 'light')
-  }
+  // store初始化
+  initStore()
+  // 主题初始化
+  initTheme()
 })
+
+onMounted(() => {})
 </script>
 
 <template>
