@@ -1,5 +1,3 @@
-import Request from '@/utils/request'
-
 /**
  * 安装引导API
  */
@@ -18,7 +16,7 @@ class InstallApi {
    * 检查安装锁
    */
   public check() {
-    return Request.get<any>('dev/install/check')
+    return request.get<any>('dev/install/check')
   }
 
   /**
@@ -39,7 +37,7 @@ class InstallApi {
     password: string,
     prefix: string
   ) {
-    return Request.post<any>('dev/install/connect', {
+    return request.post<any>('dev/install/connect', {
       hostname,
       hostport,
       database,
@@ -54,7 +52,7 @@ class InstallApi {
    * @returns
    */
   public init() {
-    return Request.post<any>('dev/install/initdb')
+    return request.post<any>('dev/install/initdb')
   }
 
   /**
@@ -66,7 +64,7 @@ class InstallApi {
    * @returns
    */
   public admin(account: string, nickname: string, email: string, password: string) {
-    return Request.post<any>('dev/install/create', {
+    return request.post<any>('dev/install/create', {
       account,
       nickname,
       email,
@@ -79,7 +77,7 @@ class InstallApi {
    * @returns
    */
   public rmconfig() {
-    return Request.get<any>('dev/install/rmconfig')
+    return request.get<any>('dev/install/rmconfig')
   }
 
   /**
@@ -87,7 +85,7 @@ class InstallApi {
    * @returns
    */
   public lock() {
-    return Request.get<any>('dev/install/lock')
+    return request.get<any>('dev/install/lock')
   }
 }
 

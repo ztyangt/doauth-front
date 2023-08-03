@@ -25,15 +25,17 @@ const rules = reactive<FormRules>({
 })
 
 // 登录
-const submitForm = async () => {
+const handleLogin = async () => {
   const formEl = loginFormRef.value
   if (!formEl) return
   await formEl.validate(async (valid) => {
-    // if (valid) {
-    //   siteStore.$patch({ isLoading: true });
-    //   const res = await inisLogin(userForm.account, userForm.password);
-    //   siteStore.$patch({ isLoading: false });
-    // }
+    if (valid) {
+      isLoading.value = true
+      const login = await useCommApi.login(userForm.account, userForm.password)
+      isLoading.value = false
+      netMessage(login)
+      // siteStore.$patch({ isLoading: false });
+    }
   })
 }
 </script>
@@ -62,7 +64,7 @@ const submitForm = async () => {
       </el-form-item>
       <el-form-item prop="password">
         <el-input
-          @keyup.enter="submitForm"
+          @keyup.enter="handleLogin"
           clearable
           show-password
           v-model="userForm.password"
@@ -71,7 +73,7 @@ const submitForm = async () => {
         />
       </el-form-item>
 
-      <el-button type="primary" round @click="submitForm" :loading="isLoading" class="w-100 mt-4">
+      <el-button type="primary" round @click="handleLogin" :loading="isLoading" class="w-100 mt-4">
         {{ isLoading ? '登录中' : '登录' }}
       </el-button>
     </el-form>

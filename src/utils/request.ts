@@ -75,4 +75,4 @@ class Request {
 }
 
 const useRequest = Request.getInstance()
-export default useRequest
+export const request = useRequest

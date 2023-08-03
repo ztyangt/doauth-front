@@ -25,10 +25,11 @@ export default defineConfig({
     AutoImport({
       // 自动导入
       imports: ['vue', 'vue-router'],
+      dirs: ['src/api', 'src/utils'],
       // 生成全局类型
       dts: 'types/unplugin/auto-imports.d.ts',
       // element-plus - 自动按需引入
-      resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
       dts: 'types/unplugin/components.d.ts',
