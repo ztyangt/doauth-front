@@ -12,7 +12,7 @@ const index = {
     {
       path: '/',
       name: 'index-home',
-      component: () => import('@/views/index/HomeView.vue'),
+      component: () => import('@/views/index/index.vue'),
       meta: { title: '首页' }
     }
   ]
@@ -26,7 +26,7 @@ const admin = {
     {
       path: '',
       name: 'admin-index',
-      component: () => import('@/views/index/HomeView.vue'),
+      component: () => import('@/views/index/index.vue'),
       meta: { title: '控制台' }
     }
   ]
@@ -41,7 +41,7 @@ const install = {
     {
       path: '',
       name: 'install',
-      component: () => import('@/views/install/IndexView.vue'),
+      component: () => import('@/views/install/index.vue'),
       meta: { title: '开始安装' }
     }
   ]

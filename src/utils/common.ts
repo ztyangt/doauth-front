@@ -11,15 +11,3 @@ export const netMessage = (response: RES<any>, success_msg?: string, error_msg?:
     ElMessage.error(error_msg ? error_msg : response.msg)
   }
 }
-
-/**
- * 主题初始化
- */
-export const initTheme = () => {
-  const theme = useHelper.get.cookie('themeMode')
-  if (theme) {
-    window.document.documentElement.setAttribute('data-theme', theme)
-  } else {
-    window.document.documentElement.setAttribute('data-theme', 'light')
-  }
-}

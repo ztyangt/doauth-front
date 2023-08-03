@@ -4,12 +4,14 @@ $white-color: #fff;
 $black-color: #363a44;
 
 // 主题色
+$theme-color: #737bf2;
 $base-primary: #5a7dff;
 $base-success: #52c41a;
 $base-warning: #faad14;
 $base-danger: #e64340;
 $base-error: #db2828;
 $base-info: #909399;
+
 
 //圆角
 $base-border-radius: 5px;
@@ -25,7 +27,8 @@ $themes: (
     pureColor: $white-color,
     keyColor: #333333,
     mutedColor: #414858,
-    titleColor: #363636,
+    titleColor: #252525,
+    themeBg: rgba($theme-color, 60%),
   ),
   dark:(
     bgColor: #282b34,
@@ -34,6 +37,7 @@ $themes: (
     keyColor: #f8fafc,
     mutedColor: #b4b6bb,
     titleColor: #f2f6fc,
+    themeBg: rgba($theme-color, 30%),
   )
 );
 
@@ -58,12 +62,12 @@ $breakpoints: (
 @mixin useTheme(){
   @each $key, $value in $themes {
     $curTheme: $key !global;
-    html[data-theme="#{$key}"] & {
-      @content;
-    }
-    // html.#{$key} & {
+    // html[data-theme="#{$key}"] & {
     //   @content;
     // }
+    html.#{$key} & {
+      @content;
+    }
   }
 }
 
@@ -90,4 +94,12 @@ $breakpoints: (
     background-color: rgba($color: getVal(pureColor), $alpha: 0.7)
   }
   background: rgb(255 255 255 / 70%);
+}
+
+@mixin lighten-color($color, $percentage) {
+  background-color: lighten($color, $percentage);
+}
+
+@mixin darken-color($color, $percentage) {
+  background-color: darken($color, $percentage);
 }

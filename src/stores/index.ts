@@ -5,4 +5,5 @@
  */
 export const initStore = () => {
   useAdminStore().initData()
+  useSiteStore().initData()
 }

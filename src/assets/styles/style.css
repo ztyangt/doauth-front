@@ -4,14 +4,24 @@
   box-sizing: border-box;
 }
 
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: ZTYfont;
+  font-style: normal;
+  font-display: swap;
+  src: url('/assets/fonts/OPPO-OS.woff2') format('truetype')
 }
 
+@font-face {
+  font-family: "阿里妈妈灵动体 VF Thin";
+  src: url("//at.alicdn.com/wf/webfont/53dCm1PvZud2/L8Nu86tnIM1s.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/53dCm1PvZud2/g4IkeWGsK4GF.woff") format("woff");
+  font-display: swap;
+}
+
+
+
 html {
+  font-family: ZTYfont, 'Noto Serif SC', serif;
   scroll-behavior: smooth;
   font-size: 16px;
 }

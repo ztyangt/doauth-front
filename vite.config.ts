@@ -7,7 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
-import vueDevTools from 'vite-plugin-vue-devtools'
+// import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,19 +21,16 @@ export default defineConfig({
 
   plugins: [
     vue(),
-    vueDevTools(),
+    // vueDevTools(),
     AutoImport({
-      // 自动导入
       imports: ['vue', 'vue-router'],
       dirs: ['src/api', 'src/utils', 'src/stores'],
-      // 生成全局类型
       dts: 'types/unplugin/auto-imports.d.ts',
       // element-plus - 自动按需引入
       resolvers: [ElementPlusResolver()]
     }),
     Components({
       dts: 'types/unplugin/components.d.ts',
-      // 自动导入的位置
       dirs: ['src/components', 'src/views/**/components', 'src/layouts/components'],
       resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
     }),
@@ -46,7 +43,6 @@ export default defineConfig({
       scss: {
         additionalData: `
         @use "~/assets/styles/theme.scss" as *;
-        @use "~/assets/styles/base.scss" as *;
         @use "~/assets/styles/element.scss" as *; 
         `
       }

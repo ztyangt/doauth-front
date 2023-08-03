@@ -130,7 +130,9 @@ const methods = {
   }
 
   .txt {
-    color: #414858;
+    @include useTheme {
+      color: getVal(mutedColor);
+    }
   }
 }
 </style>

@@ -6,8 +6,6 @@ const config = reactive({
 onBeforeMount(() => {
   // store初始化
   initStore()
-  // 主题初始化
-  initTheme()
 })
 
 onMounted(() => {})
@@ -18,7 +16,7 @@ onMounted(() => {})
   <RouterView />
 </template>
 
-<style>
+<style lang="scss">
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s ease;
@@ -27,5 +25,11 @@ onMounted(() => {})
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.hovc {
+  &:hover {
+    color: $theme-color;
+  }
 }
 </style>
