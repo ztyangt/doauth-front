@@ -1,5 +1,6 @@
 import axios from 'axios'
-import type { AxiosInstance, Method, AxiosResponse } from 'axios'
+import type { AxiosInstance, Method } from 'axios'
+import { ElMessage } from 'element-plus'
 // import qs from 'qs'
 
 class Request {
@@ -43,6 +44,7 @@ class Request {
       },
       (error) => {
         // 响应错误
+        ElMessage.error(error.response.data.msg)
         return Promise.reject(error)
       }
     )

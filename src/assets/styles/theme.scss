@@ -58,9 +58,12 @@ $breakpoints: (
 @mixin useTheme(){
   @each $key, $value in $themes {
     $curTheme: $key !global;
-    html.#{$key} & {
+    html[data-theme="#{$key}"] & {
       @content;
     }
+    // html.#{$key} & {
+    //   @content;
+    // }
   }
 }
 

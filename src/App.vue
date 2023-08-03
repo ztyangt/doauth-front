@@ -6,8 +6,12 @@ const config = reactive({
 })
 
 onBeforeMount(() => {
-  const theme = useHelper.get.cookie('theme')
-  console.log('theme: ', theme)
+  const theme = useHelper.get.cookie('themeMode')
+  if (theme) {
+    window.document.documentElement.setAttribute('data-theme', theme)
+  } else {
+    window.document.documentElement.setAttribute('data-theme', 'light')
+  }
 })
 </script>
 
