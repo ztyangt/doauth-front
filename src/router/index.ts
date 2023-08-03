@@ -2,7 +2,9 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 import { useInstallApi } from '@/api/install'
 import LayBase from '@/layouts/LayBase.vue'
 import LayInstall from '@/layouts/LayInstall.vue'
+import LayAdmin from '@/layouts/LayAdmin.vue'
 
+// 前台路由
 const index = {
   path: '/',
   component: LayBase,
@@ -12,6 +14,20 @@ const index = {
       name: 'index-home',
       component: () => import('@/views/index/HomeView.vue'),
       meta: { title: '首页' }
+    }
+  ]
+}
+
+// 后台路由
+const admin = {
+  path: '/admin',
+  component: LayAdmin,
+  children: [
+    {
+      path: '',
+      name: 'admin-index',
+      component: () => import('@/views/index/HomeView.vue'),
+      meta: { title: '控制台' }
     }
   ]
 }
@@ -49,6 +65,7 @@ const error = [
 
 const routes = [
   index,
+  admin,
   install,
   ...error,
   {

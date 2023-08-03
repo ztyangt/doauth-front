@@ -111,9 +111,7 @@ const handleLogin = async () => {
   }
 
   .txt {
-    @include useTheme {
-      color: getVal(mutedColor);
-    }
+    color: #414858;
   }
 }
 </style>
