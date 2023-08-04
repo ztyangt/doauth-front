@@ -2,7 +2,13 @@
 const adminStore = useAdminStore()
 const siteStore = useSiteStore()
 const router = useRouter()
-// const route = useRoute()
+const route = useRoute()
+
+const breadList = computed(() => {
+  return route.matched.filter((item) => item.name)
+})
+
+console.log('breadList: ', breadList.value)
 
 const methods = {
   /**
@@ -59,8 +65,23 @@ const methods = {
         <Icon name="indent" class="trf hovc leftbtn" @click="methods.leftAside" />
       </div>
 
-      <div class="ml-2">
-        <Icon name="mapmarker" />
+      <div class="ml-3 flex-yc">
+        <Icon name="mapmarker" class="mr-1" />
+        <el-breadcrumb class="bread-menu-wrapper" separator="/">
+          <el-breadcrumb-item v-for="(item, index) in breadList" :key="index">
+            <el-dropdown v-if="item.children.length">
+              <span style="outline: unset" class="curp">{{ item.meta.title }}</span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item v-for="(route, subIndex) in item.children" :key="subIndex">
+                    <span @click="router.push(route.path)">{{ route.meta.title }}</span>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+            <span v-else>{{ item.meta.title }}</span>
+          </el-breadcrumb-item>
+        </el-breadcrumb>
       </div>
     </div>
 
@@ -114,6 +135,9 @@ const methods = {
 
 <style lang="scss" scoped>
 .toolbar {
+  @include useTheme {
+    color: getVal(textColor);
+  }
   .avatar {
     outline: unset;
   }
