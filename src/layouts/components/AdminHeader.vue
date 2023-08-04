@@ -51,6 +51,10 @@ const methods = {
         })
         .catch(() => {})
     }
+
+    if (command === 'goHome') {
+      router.push('/')
+    }
   }
 }
 </script>
@@ -121,7 +125,11 @@ const methods = {
               <Icon name="lock" class="mr-1" />
               <span>修改密码</span>
             </el-dropdown-item>
-            <el-dropdown-item command="logout">
+            <el-dropdown-item command="goHome">
+              <Icon name="home" class="mr-1" />
+              <span>回到前台</span>
+            </el-dropdown-item>
+            <el-dropdown-item divided command="logout">
               <Icon name="signout" class="mr-1" />
               <span>退出登录</span>
             </el-dropdown-item>

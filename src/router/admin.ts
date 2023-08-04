@@ -9,7 +9,7 @@ export const adminRoutes = {
       path: '',
       name: 'admin-index',
       component: () => import('@/views/admin/index/index.vue'),
-      meta: { title: '首页', icon: 'home' }
+      meta: { title: '首页', icon: 'dashboard' }
     },
     {
       path: 'auth',

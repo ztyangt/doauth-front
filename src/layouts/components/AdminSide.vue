@@ -22,10 +22,10 @@ const openeds = computed(() => {
 
 <template>
   <el-aside class="sidebar trf">
-    <RouterLink to="/" class="logo curp flex-center my-2 pt-2 pb-4">
+    <div class="logo flex-center my-2 pt-2 pb-4">
       <img src="/favicon.svg" alt="DoAuth" />
       <span v-show="!siteStore.sideCollapse" class="ml-1 trf">DoAuth</span>
-    </RouterLink>
+    </div>
 
     <el-scrollbar view-class="scroll-wrapper">
       <el-menu :collapse="siteStore.sideCollapse" :default-openeds="openeds" router>
