@@ -1,0 +1,34 @@
+@use "../theme.scss" as *;
+
+$--colors: (
+  "primary": (
+    "base": $base-primary
+  ),
+  "success": (
+    "base": $base-success
+  ),
+  "warning": (
+    "base": $base-warning
+  ),
+  "danger": (
+    "base": $base-danger
+  ),
+  "error": (
+    "base": $base-error
+  ),
+  "info": (
+    "base": $base-info
+  )
+);
+
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: $--colors
+);
+
+@use "./dark.scss";
+
+.el-menu.el-menu--popup {
+  @include useTheme {
+    background-color: getVal(themeBg) !important;
+  }
+}

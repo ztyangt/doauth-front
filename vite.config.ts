@@ -27,7 +27,7 @@ export default defineConfig({
       dirs: ['src/api', 'src/utils', 'src/stores'],
       dts: 'types/unplugin/auto-imports.d.ts',
       // element-plus - 自动按需引入
-      resolvers: [ElementPlusResolver()]
+      resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
     }),
     Components({
       dts: 'types/unplugin/components.d.ts',
@@ -43,7 +43,7 @@ export default defineConfig({
       scss: {
         additionalData: `
         @use "~/assets/styles/theme.scss" as *;
-        @use "~/assets/styles/element.scss" as *; 
+        @use "~/assets/styles/element/var.scss" as *; 
         `
       }
     }

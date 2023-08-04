@@ -1,9 +1,15 @@
 <script setup lang="ts">
 const siteStore = useSiteStore()
+const asideWidth = computed(() => {
+  return !siteStore.sideCollapse ? '200px' : '60px'
+})
+const asideLeft = computed(() => {
+  return siteStore.asideLeft ? '0' : '-200px'
+})
 </script>
 
 <template>
-  <el-aside class="sidebar trf" :style="{ width: !siteStore.sideCollapse ? '200px' : '60px' }">
+  <el-aside class="sidebar trf">
     <RouterLink to="/" class="logo curp flex-center my-2 pt-2 pb-4">
       <img src="/favicon.svg" alt="DoAuth" />
       <span v-show="!siteStore.sideCollapse" class="ml-1 trf">DoAuth</span>
@@ -80,14 +86,35 @@ const siteStore = useSiteStore()
       </el-menu>
     </el-scrollbar>
   </el-aside>
+  <div class="overlay" v-show="siteStore.asideLeft" @click="siteStore.asideLeft = false"></div>
 </template>
 
 <style lang="scss" scoped>
+.overlay {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  z-index: 9;
+  @include useTheme {
+    background-color: rgba(getVal(pureColor), 40%);
+  }
+}
 .sidebar {
   display: flex;
   flex-direction: column;
+  width: v-bind(asideWidth);
+  z-index: 99;
   @include useTheme {
     background-color: getVal(themeBg);
+  }
+  @include respond-to('xs') {
+    width: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+
+    left: v-bind(asideLeft);
   }
 }
 .el-menu {

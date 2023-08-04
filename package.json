@@ -12,6 +12,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.7.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
     "lottie-web": "^5.12.2",

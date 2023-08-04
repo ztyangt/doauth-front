@@ -3,7 +3,8 @@ import { defineStore } from 'pinia'
 export const useSiteStore = defineStore('siteStore', {
   state: () => ({
     theme: 'light',
-    sideCollapse: false
+    sideCollapse: false,
+    asideLeft: false
   }),
   actions: {
     initData() {
