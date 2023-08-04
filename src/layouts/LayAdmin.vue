@@ -1,3 +1,28 @@
+<script lang="ts" setup>
+const siteStore = useSiteStore()
+const route = useRoute()
+
+watch(
+  route,
+  (val) => {
+    const hasRoute = siteStore.tabRoute.find((item) => item.name === val.name)
+    const routeData = {
+      name: String(val.name),
+      title: String(val.meta?.title),
+      path: String(val.path),
+      icon: String(val.meta?.icon)
+    }
+    if (!hasRoute) {
+      siteStore.$patch((state) => {
+        state.tabRoute.push(routeData)
+      })
+    }
+    siteStore.curentRoute = val.name as string
+  },
+  { immediate: true }
+)
+</script>
+
 <template>
   <el-container class="layout-admin">
     <AdminSide />
@@ -17,31 +42,6 @@
     </el-container>
   </el-container>
 </template>
-
-<script lang="ts" setup>
-const siteStore = useSiteStore()
-const route = useRoute()
-
-watch(
-  route,
-  (val) => {
-    const hasRoute = siteStore.tabRoute.find((item) => item.name === val.name)
-    const routeData = {
-      name: val.name.toString(),
-      title: val.meta.title.toString(),
-      path: val.path,
-      icon: val.meta.icon.toString()
-    }
-    if (!hasRoute) {
-      siteStore.$patch((state) => {
-        state.tabRoute.push(routeData)
-      })
-    }
-    siteStore.curentRoute = val.name.toString()
-  },
-  { immediate: true }
-)
-</script>
 
 <style lang="scss" scoped>
 .fade-enter-active,

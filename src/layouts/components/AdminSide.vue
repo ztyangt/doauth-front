@@ -36,7 +36,7 @@ const openeds = computed(() => {
             :class="{ expand: nowRoute.matched[1].name === route.name }"
           >
             <template #title>
-              <Icon :name="route.meta.icon" class="mr-1" />
+              <Icon :name="`${route.meta.icon}`" class="mr-1" />
               <span>{{ route.meta.title }}</span>
             </template>
 
@@ -46,7 +46,7 @@ const openeds = computed(() => {
               :class="{ 'is-active': nowRoute.name === subRoute.name }"
               :index="`${adminRoutes.path}/${route.path}/${subRoute.path}`"
             >
-              <Icon :name="subRoute.meta.icon" class="mr-1" />
+              <Icon :name="`${subRoute.meta.icon}`" class="mr-1" />
               <span>{{ subRoute.meta.title }}</span>
             </el-menu-item>
           </el-sub-menu>
@@ -57,7 +57,7 @@ const openeds = computed(() => {
             :class="{ 'is-active': nowRoute.name === route.name }"
             :index="`${adminRoutes.path}/${route.path}`"
           >
-            <Icon :name="route.meta.icon" class="mr-1" />
+            <Icon :name="`${route.meta.icon}`" class="mr-1" />
             <span>{{ route.meta.title }}</span>
           </el-menu-item>
         </template>

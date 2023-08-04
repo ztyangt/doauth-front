@@ -3,7 +3,7 @@ $white-color: #fff;
 $black-color: #363a44;
 
 // 主题色
-$theme-color: #5a6f9d;
+$theme-color: #5973d1;
 $base-primary: #5a7dff;
 $base-success: #52c41a;
 $base-warning: #faad14;
@@ -35,7 +35,7 @@ $themes: (
     keyColor: #f8fafc,
     mutedColor: #b4b6bb,
     titleColor: #f2f6fc,
-    themeBg: mix($theme-color, #000000, 50%),
+    themeBg: mix($theme-color, #000000, 40%),
     themeBg1: mix($theme-color, #000000, 60%)
   )
 );

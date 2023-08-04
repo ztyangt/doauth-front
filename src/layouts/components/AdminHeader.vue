@@ -72,17 +72,17 @@ const methods = {
         <el-breadcrumb class="bread-menu-wrapper" separator="/">
           <el-breadcrumb-item v-for="(item, index) in breadList" :key="index">
             <el-dropdown v-if="item.children.length">
-              <span style="outline: unset" class="curp">{{ item.meta.title }}</span>
+              <span style="outline: unset" class="curp">{{ item.meta?.title }}</span>
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item v-for="(route, subIndex) in item.children" :key="subIndex">
-                    <Icon :name="route.meta.icon" />
-                    <span @click="router.push(route.path)">{{ route.meta.title }}</span>
+                    <Icon :name="`${route.meta?.icon}`" />
+                    <span @click="router.push(route.path)">{{ route.meta?.title }}</span>
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
-            <span v-else>{{ item.meta.title }}</span>
+            <span v-else>{{ item.meta?.title }}</span>
           </el-breadcrumb-item>
         </el-breadcrumb>
       </div>

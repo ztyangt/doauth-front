@@ -1,24 +1,28 @@
 <script setup lang="ts">
+import type { TabsPaneContext } from 'element-plus'
+
 const siteStore = useSiteStore()
 const router = useRouter()
 const route = useRoute()
 
 const methods = {
-  removeTab: (e) => {
+  removeTab: (e: string) => {
     const tabIndex = siteStore.tabRoute.findIndex((item) => item.name === e)
     siteStore.tabRoute.splice(tabIndex, 1)
     if (route.name === e) {
       router.push({ name: siteStore.tabRoute[tabIndex - 1].name })
     }
   },
-  clickTab: (e) => {
-    router.push({ name: e.paneName })
+  clickTab: (e: TabsPaneContext) => {
+    router.push({ name: String(e.paneName) })
   }
 }
 </script>
 
 <template>
   <el-tabs
+    v-if="siteStore.curentRoute"
+    v-auto-animate
     type="card"
     class="demo-tabs"
     v-model="siteStore.curentRoute"
