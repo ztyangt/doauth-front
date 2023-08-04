@@ -16,8 +16,8 @@ const asideLeft = computed(() => {
     </RouterLink>
 
     <el-scrollbar view-class="scroll-wrapper">
-      <el-menu :collapse="siteStore.sideCollapse" :default-openeds="['1', '2']">
-        <el-menu-item index="1">
+      <el-menu :collapse="siteStore.sideCollapse" :default-openeds="['1', '2']" router>
+        <el-menu-item index="/admin">
           <Icon name="home" class="mr-1" />
           <span> 首页</span>
         </el-menu-item>
@@ -79,7 +79,7 @@ const asideLeft = computed(() => {
           <Icon name="questioncircle" class="mr-1" />
           <span>使用帮助</span>
         </el-menu-item>
-        <el-menu-item index="7">
+        <el-menu-item index="/admin/about">
           <Icon name="refresh1" class="mr-1" />
           <span>关于</span>
         </el-menu-item>

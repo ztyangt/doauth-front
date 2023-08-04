@@ -26,8 +26,14 @@ const admin = {
     {
       path: '',
       name: 'admin-index',
-      component: () => import('@/views/admin/index.vue'),
-      meta: { title: '控制台' }
+      component: () => import('@/views/admin/index/index.vue'),
+      meta: { title: '首页' }
+    },
+    {
+      path: 'about',
+      name: 'admin-about',
+      component: () => import('@/views/admin/about/index.vue'),
+      meta: { title: '关于' }
     }
   ]
 }
