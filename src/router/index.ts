@@ -26,7 +26,7 @@ const admin = {
     {
       path: '',
       name: 'admin-index',
-      component: () => import('@/views/index/index.vue'),
+      component: () => import('@/views/admin/index.vue'),
       meta: { title: '控制台' }
     }
   ]

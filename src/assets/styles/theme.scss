@@ -4,7 +4,7 @@ $white-color: #fff;
 $black-color: #363a44;
 
 // 主题色
-$theme-color: #737bf2;
+$theme-color: #845ec2;
 $base-primary: #5a7dff;
 $base-success: #52c41a;
 $base-warning: #faad14;
@@ -28,7 +28,7 @@ $themes: (
     keyColor: #333333,
     mutedColor: #414858,
     titleColor: #252525,
-    themeBg: rgba($theme-color, 60%),
+    themeBg: rgba($theme-color, 80%),
   ),
   dark:(
     bgColor: #282b34,

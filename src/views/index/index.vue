@@ -33,8 +33,8 @@ onMounted(() => {
         <el-button type="primary" round class="w-50" @click="handleStart">立即使用</el-button>
       </div>
     </div>
+    <AdminLogin :visible="login" @onClose="login = false" />
   </div>
-  <AdminLogin :visible="login" @onClose="login = false" />
 </template>
 
 <style lang="scss" scoped>

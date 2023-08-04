@@ -1,12 +1,28 @@
 <script setup lang="ts">
 const adminStore = useAdminStore()
 const siteStore = useSiteStore()
+
+const methods = {
+  /**
+   * 折叠菜单
+   */
+  handleCollapse: () => {
+    siteStore.sideCollapse = !siteStore.sideCollapse
+  },
+
+  /**
+   * 全屏切换
+   */
+  toggleScreen: () => {
+    toggleFullscreen()
+  }
+}
 </script>
 
 <template>
   <div class="toolbar wh-100 flex-yc flex-sb">
     <div class="side-btn curp">
-      <Icon name="indent" class="trf hovc" />
+      <Icon name="indent" class="trf hovc" @click="methods.handleCollapse" />
     </div>
 
     <div class="flex-yc">
@@ -24,7 +40,7 @@ const siteStore = useSiteStore()
         />
       </el-tooltip>
       <el-tooltip class="box-item" effect="dark" content="全屏" placement="bottom">
-        <Icon class="mr-2 curp trf hovc" name="arrowsalt" />
+        <Icon class="mr-2 curp trf hovc" name="arrowsalt" @click="methods.toggleScreen" />
       </el-tooltip>
       <el-dropdown>
         <el-avatar

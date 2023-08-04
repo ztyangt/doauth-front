@@ -13,20 +13,10 @@ onMounted(() => {})
 
 <template>
   <el-config-provider :message="config"> </el-config-provider>
-  <RouterView />
+  <router-view />
 </template>
 
 <style lang="scss">
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-
 .hovc {
   &:hover {
     color: $theme-color;

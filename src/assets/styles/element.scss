@@ -22,4 +22,15 @@
       'base': $base-info,
     ),
   ),
+
+  $fill-color: (
+    'blank': #2997f7,
+  )
 );
+
+.el-menu.el-menu--popup {
+  @include useTheme {
+    background-color: getVal(themeBg)!important;
+  }
+}
+

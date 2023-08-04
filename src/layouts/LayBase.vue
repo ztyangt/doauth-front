@@ -1,11 +1,6 @@
 <script setup lang="ts"></script>
 
 <template>
-  <!-- <div class="home-wrapper">
-    <IndexHeader />
-    <main><router-view></router-view></main>
-    <IndexFooter />
-  </div> -->
   <router-view></router-view>
 </template>
 

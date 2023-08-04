@@ -1,14 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const siteStore = useSiteStore()
+</script>
 
 <template>
-  <el-aside class="sidebar" width="200px">
-    <div class="logo curp flex-center my-2 p-2">
-      <img src="/favicon.svg" class="mr-1" alt="DoAuth" />
-      <span>DoAuth</span>
-    </div>
+  <el-aside class="sidebar trf" :style="{ width: !siteStore.sideCollapse ? '200px' : '60px' }">
+    <RouterLink to="/" class="logo curp flex-center my-2 pt-2 pb-4">
+      <img src="/favicon.svg" alt="DoAuth" />
+      <span v-show="!siteStore.sideCollapse" class="ml-1 trf">DoAuth</span>
+    </RouterLink>
 
-    <el-scrollbar>
-      <el-menu :default-openeds="['1', '2']">
+    <el-scrollbar view-class="scroll-wrapper">
+      <el-menu :collapse="siteStore.sideCollapse" :default-openeds="['1', '2']">
         <el-menu-item index="1">
           <Icon name="home" class="mr-1" />
           <span> 首页</span>
@@ -82,6 +84,8 @@
 
 <style lang="scss" scoped>
 .sidebar {
+  display: flex;
+  flex-direction: column;
   @include useTheme {
     background-color: getVal(themeBg);
   }
@@ -94,18 +98,28 @@
 }
 .el-menu-item,
 :deep(.el-sub-menu__title) {
-  @include useTheme {
-    color: getVal(titleColor);
+  color: #fff;
+  &:hover {
+    background-color: $theme-color;
   }
 }
 .logo {
+  flex-shrink: 0;
+  @include useTheme {
+    border-bottom: 1px solid rgba(#fff, 0.5);
+  }
+
   img {
     width: 40px;
     height: 40px;
   }
   span {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding-top: 2px;
     font-family: webfont_9y7Fpx5jLQvb_400, '阿里妈妈灵动体 VF Thin', webfont-notdef;
     --wght: 700;
     --wdth: 88.41;

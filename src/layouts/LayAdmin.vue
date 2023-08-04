@@ -8,6 +8,7 @@
       </el-header>
 
       <el-main>
+        <router-view />
         <el-button type="danger" @click="logOut">退出登录</el-button>
         <el-scrollbar>
           <el-table :data="tableData">
