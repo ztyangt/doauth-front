@@ -8,8 +8,6 @@ const breadList = computed(() => {
   return route.matched.filter((item) => item.name)
 })
 
-console.log('breadList: ', breadList.value)
-
 const methods = {
   /**
    * 折叠菜单
@@ -74,6 +72,7 @@ const methods = {
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item v-for="(route, subIndex) in item.children" :key="subIndex">
+                    <Icon :name="route.meta.icon" />
                     <span @click="router.push(route.path)">{{ route.meta.title }}</span>
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -138,6 +137,7 @@ const methods = {
   @include useTheme {
     color: getVal(textColor);
   }
+
   .avatar {
     outline: unset;
   }

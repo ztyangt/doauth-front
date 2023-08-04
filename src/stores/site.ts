@@ -1,10 +1,20 @@
 import { defineStore } from 'pinia'
+import { adminRoutes } from '@/router/admin'
+
+interface tabroute {
+  name: string
+  title: string
+  path: string
+  icon: string
+}
 
 export const useSiteStore = defineStore('siteStore', {
   state: () => ({
     theme: 'light',
     sideCollapse: false,
-    asideLeft: false
+    asideLeft: false,
+    tabRoute: [] as tabroute[],
+    curentRoute: null as string | null
   }),
   actions: {
     initData() {
@@ -17,6 +27,14 @@ export const useSiteStore = defineStore('siteStore', {
         // window.document.documentElement.setAttribute('data-theme', 'light')
         window.document.documentElement.setAttribute('class', 'light')
       }
+      const initRoute = {
+        name: adminRoutes.children[0].name,
+        title: adminRoutes.children[0].meta.title,
+        path: adminRoutes.path,
+        icon: adminRoutes.children[0].meta.icon
+      }
+      this.tabRoute.push(initRoute)
+      this.curentRoute = adminRoutes.children[0].name
     },
 
     changeTheme() {

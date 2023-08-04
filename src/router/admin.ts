@@ -90,7 +90,7 @@ export const adminRoutes = {
       path: 'about',
       name: 'admin-about',
       component: () => import('@/views/admin/about/index.vue'),
-      meta: { title: '关于', icon: 'refresh1' }
+      meta: { title: '关于', icon: 'book1' }
     }
   ]
 }

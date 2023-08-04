@@ -23,4 +23,7 @@ onMounted(() => {})
     color: $theme-color;
   }
 }
+#nprogress .bar {
+  background-color: $theme-color !important;
+}
 </style>

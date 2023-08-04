@@ -1,8 +1,18 @@
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import { useInstallApi } from '@/api/install'
 import LayBase from '@/layouts/LayBase.vue'
 import LayInstall from '@/layouts/LayInstall.vue'
 import { adminRoutes } from './admin'
+
+NProgress.configure({
+  easing: 'ease', // 动画方式
+  speed: 500, // 递增进度条的速度
+  showSpinner: false, // 是否显示加载 icon
+  trickleSpeed: 200, // 自动递增间隔
+  minimum: 0.3 // 初始化时的最小百分比
+})
 
 // 前台路由
 const index = {
@@ -69,6 +79,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  NProgress.start()
   const meta = to.meta || {}
   // 设置页面标题
   if (to.path === '/') {
@@ -96,6 +107,10 @@ router.beforeEach(async (to, from, next) => {
     }
   }
   next()
+})
+
+router.afterEach(() => {
+  NProgress.done() // 进度条结束
 })
 
 export default router

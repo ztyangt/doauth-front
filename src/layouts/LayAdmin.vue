@@ -6,7 +6,7 @@
       <el-header>
         <AdminHeader />
       </el-header>
-
+      <AdminTabRoute />
       <el-main>
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -18,7 +18,30 @@
   </el-container>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const siteStore = useSiteStore()
+const route = useRoute()
+
+watch(
+  route,
+  (val) => {
+    const hasRoute = siteStore.tabRoute.find((item) => item.name === val.name)
+    const routeData = {
+      name: val.name.toString(),
+      title: val.meta.title.toString(),
+      path: val.path,
+      icon: val.meta.icon.toString()
+    }
+    if (!hasRoute) {
+      siteStore.$patch((state) => {
+        state.tabRoute.push(routeData)
+      })
+    }
+    siteStore.curentRoute = val.name.toString()
+  },
+  { immediate: true }
+)
+</script>
 
 <style lang="scss" scoped>
 .fade-enter-active,
@@ -37,7 +60,8 @@
     background-color: getVal(bgColor);
   }
 
-  .el-header {
+  .el-header,
+  .el-tabs {
     @include useTheme {
       background-color: getVal(pureColor);
     }
