@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 import { useInstallApi } from '@/api/install'
 import LayBase from '@/layouts/LayBase.vue'
 import LayInstall from '@/layouts/LayInstall.vue'
-import LayAdmin from '@/layouts/LayAdmin.vue'
+import { adminRoutes } from './admin'
 
 // 前台路由
 const index = {
@@ -14,26 +14,6 @@ const index = {
       name: 'index-home',
       component: () => import('@/views/index/index.vue'),
       meta: { title: '首页' }
-    }
-  ]
-}
-
-// 后台路由
-const admin = {
-  path: '/admin',
-  component: LayAdmin,
-  children: [
-    {
-      path: '',
-      name: 'admin-index',
-      component: () => import('@/views/admin/index/index.vue'),
-      meta: { title: '首页' }
-    },
-    {
-      path: 'about',
-      name: 'admin-about',
-      component: () => import('@/views/admin/about/index.vue'),
-      meta: { title: '关于' }
     }
   ]
 }
@@ -72,7 +52,7 @@ const error = [
 const routes = [
   index,
   install,
-  admin,
+  adminRoutes,
   ...error,
   {
     path: '/:pathMatch(.*)*',

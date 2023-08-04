@@ -1,10 +1,22 @@
 <script setup lang="ts">
+import { adminRoutes } from '@/router/admin'
+
 const siteStore = useSiteStore()
+const nowRoute = useRoute()
+
 const asideWidth = computed(() => {
   return !siteStore.sideCollapse ? '200px' : '60px'
 })
+
 const asideLeft = computed(() => {
   return siteStore.asideLeft ? '0' : '-200px'
+})
+
+// 默认展开菜单
+const openeds = computed(() => {
+  const result = nowRoute.matched[1].name
+  if (result) return [result as string]
+  else return ['admin-auth']
 })
 </script>
 
@@ -16,73 +28,39 @@ const asideLeft = computed(() => {
     </RouterLink>
 
     <el-scrollbar view-class="scroll-wrapper">
-      <el-menu :collapse="siteStore.sideCollapse" :default-openeds="['1', '2']" router>
-        <el-menu-item index="/admin">
-          <Icon name="home" class="mr-1" />
-          <span> 首页</span>
-        </el-menu-item>
+      <el-menu :collapse="siteStore.sideCollapse" :default-openeds="openeds" router>
+        <template v-for="(route, index) in adminRoutes.children" :key="index">
+          <el-sub-menu
+            v-if="route.children"
+            :index="route.name"
+            :class="{ expand: nowRoute.matched[1].name === route.name }"
+          >
+            <template #title>
+              <Icon :name="route.meta.icon" class="mr-1" />
+              <span>{{ route.meta.title }}</span>
+            </template>
 
-        <el-sub-menu index="2">
-          <template #title>
-            <Icon name="vimeosquare" class="mr-1" />
-            <span>授权管理</span>
-          </template>
-          <el-menu-item index="2-1">
-            <Icon name="plussquareo" class="mr-1" />
-            <span>新增授权</span>
-          </el-menu-item>
-          <el-menu-item index="2-2">
-            <Icon name="sliders1" class="mr-1" />
-            <span>授权列表</span>
-          </el-menu-item>
-          <el-menu-item index="2-3">
-            <Icon name="minussquareo" class="mr-1" />
-            <span>授权策略</span>
-          </el-menu-item>
-        </el-sub-menu>
+            <el-menu-item
+              v-for="(subRoute, subindex) in route.children"
+              :key="subindex"
+              :class="{ 'is-active': nowRoute.name === subRoute.name }"
+              :index="`${adminRoutes.path}/${route.path}/${subRoute.path}`"
+            >
+              <Icon :name="subRoute.meta.icon" class="mr-1" />
+              <span>{{ subRoute.meta.title }}</span>
+            </el-menu-item>
+          </el-sub-menu>
 
-        <el-sub-menu index="3">
-          <template #title>
-            <Icon name="delicious" class="mr-1" />
-            <span> 软件管理</span>
-          </template>
-          <el-menu-item index="3-1">
-            <Icon name="plussquareo" class="mr-1" />
-            <span>新增软件</span>
+          <el-menu-item
+            v-else
+            class="top-menu"
+            :class="{ 'is-active': nowRoute.name === route.name }"
+            :index="`${adminRoutes.path}/${route.path}`"
+          >
+            <Icon :name="route.meta.icon" class="mr-1" />
+            <span>{{ route.meta.title }}</span>
           </el-menu-item>
-          <el-menu-item index="3-2">
-            <Icon name="gg1" class="mr-1" />
-            <span>软件列表</span>
-          </el-menu-item>
-        </el-sub-menu>
-
-        <el-menu-item index="4">
-          <Icon name="crosshairs" class="mr-1" />
-          <span>盗版追踪</span>
-        </el-menu-item>
-
-        <el-sub-menu index="5">
-          <template #title>
-            <Icon name="cog1" class="mr-1" />
-            <span>系统设置</span>
-          </template>
-          <el-menu-item index="5-1">
-            <Icon name="user3" class="mr-1" />
-            <span>个人设置</span>
-          </el-menu-item>
-          <el-menu-item index="5-2">
-            <Icon name="cogs1" class="mr-1" />
-            <span>网站设置</span>
-          </el-menu-item>
-        </el-sub-menu>
-        <el-menu-item index="6">
-          <Icon name="questioncircle" class="mr-1" />
-          <span>使用帮助</span>
-        </el-menu-item>
-        <el-menu-item index="/admin/about">
-          <Icon name="refresh1" class="mr-1" />
-          <span>关于</span>
-        </el-menu-item>
+        </template>
       </el-menu>
     </el-scrollbar>
   </el-aside>
@@ -90,6 +68,9 @@ const asideLeft = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.scroll-wrapper {
+  height: 100px;
+}
 .overlay {
   position: absolute;
   inset: 0;
@@ -100,6 +81,7 @@ const asideLeft = computed(() => {
   }
 }
 .sidebar {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   width: v-bind(asideWidth);
@@ -122,6 +104,16 @@ const asideLeft = computed(() => {
   @include useTheme {
     --el-menu-bg-color: getVal(themeBg);
   }
+  .el-sub-menu .is-active,
+  .top-menu.is-active {
+    color: #fff;
+    background-color: adjust-hue($theme-color, 10);
+  }
+  .el-sub-menu.expand {
+    @include useTheme {
+      background-color: getVal(themeBg1);
+    }
+  }
 }
 .el-menu-item,
 :deep(.el-sub-menu__title) {
@@ -133,7 +125,7 @@ const asideLeft = computed(() => {
 .logo {
   flex-shrink: 0;
   @include useTheme {
-    border-bottom: 1px solid rgba(#fff, 0.5);
+    border-bottom: 1px solid rgba(#fff, 0.3);
   }
 
   img {

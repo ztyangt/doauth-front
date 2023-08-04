@@ -2,6 +2,7 @@
 const adminStore = useAdminStore()
 const siteStore = useSiteStore()
 const router = useRouter()
+// const route = useRoute()
 
 const methods = {
   /**
@@ -52,9 +53,15 @@ const methods = {
 
 <template>
   <div v-if="adminStore.login" class="toolbar wh-100 flex-yc flex-sb">
-    <div class="side-btn curp">
-      <Icon name="indent" class="trf hovc collbtn" @click="methods.handleCollapse" />
-      <Icon name="indent" class="trf hovc leftbtn" @click="methods.leftAside" />
+    <div class="header-left flex">
+      <div class="side-btn curp">
+        <Icon name="indent" class="trf hovc collbtn" @click="methods.handleCollapse" />
+        <Icon name="indent" class="trf hovc leftbtn" @click="methods.leftAside" />
+      </div>
+
+      <div class="ml-2">
+        <Icon name="mapmarker" />
+      </div>
     </div>
 
     <div class="flex-yc">

@@ -25,7 +25,8 @@ $themes: (
     keyColor: #333333,
     mutedColor: #414858,
     titleColor: #252525,
-    themeBg: mix($theme-color, #ffffff, 80%)
+    themeBg: mix($theme-color, #ffffff, 80%),
+    themeBg1: mix($theme-color, #ffffff, 70%)
   ),
   dark: (
     bgColor: #282b34,
@@ -34,7 +35,8 @@ $themes: (
     keyColor: #f8fafc,
     mutedColor: #b4b6bb,
     titleColor: #f2f6fc,
-    themeBg: mix($theme-color, #000000, 50%)
+    themeBg: mix($theme-color, #000000, 50%),
+    themeBg1: mix($theme-color, #000000, 60%)
   )
 );
 
