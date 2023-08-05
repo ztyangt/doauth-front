@@ -21,6 +21,7 @@ const methods = {
    */
   leftAside: () => {
     siteStore.asideLeft = !siteStore.asideLeft
+    siteStore.sideCollapse = false
   },
 
   /**
