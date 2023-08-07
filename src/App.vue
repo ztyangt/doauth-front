@@ -5,7 +5,7 @@ const config = reactive({
 
 onBeforeMount(async () => {
   // store初始化
-  await initStore()
+  initStore()
 })
 
 onMounted(() => {})
