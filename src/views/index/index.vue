@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import VanillaTilt from 'vanilla-tilt'
+import { storeToRefs } from 'pinia'
+
+const siteStore = useSiteStore()
+const { siteConfig } = storeToRefs(siteStore)
+
 const tiltRef = ref()
 
 const login = ref<boolean>(false)
@@ -25,8 +30,8 @@ onMounted(() => {
   <div class="home-view flex-center">
     <div ref="tiltRef" class="main-card">
       <lottie-item class="disib" name="install" width="200px" height="200px" />
-      <h1>DoAuth</h1>
-      <p class="mt-1">DoAuth域名授权管理系统，保护您的源码安全!</p>
+      <h1>{{ siteConfig?.json.site_name }}</h1>
+      <p class="mt-1">{{ siteConfig?.json.description }}</p>
 
       <div class="flex-center mt-4 px-4">
         <el-button type="success" round class="w-50">授权查询</el-button>

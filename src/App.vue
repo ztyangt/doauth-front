@@ -3,9 +3,9 @@ const config = reactive({
   max: 3
 })
 
-onBeforeMount(() => {
+onBeforeMount(async () => {
   // store初始化
-  initStore()
+  await initStore()
 })
 
 onMounted(() => {})

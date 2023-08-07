@@ -3,7 +3,7 @@
 /**
  * store初始化
  */
-export const initStore = () => {
+export const initStore = async () => {
   useAdminStore().initData()
-  useSiteStore().initData()
+  await useSiteStore().initData()
 }

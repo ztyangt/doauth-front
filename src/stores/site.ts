@@ -14,10 +14,12 @@ export const useSiteStore = defineStore('siteStore', {
     sideCollapse: false,
     asideLeft: false,
     tabRoute: [] as tabroute[],
-    curentRoute: null as string | null
+    curentRoute: null as string | null,
+    siteConfig: null as null | Auth.Config
   }),
   actions: {
-    initData() {
+    async initData() {
+      // 主题初始化
       const theme = useHelper.get.cookie('themeMode')
       if (theme) {
         this.theme = theme
@@ -27,6 +29,7 @@ export const useSiteStore = defineStore('siteStore', {
         // window.document.documentElement.setAttribute('data-theme', 'light')
         window.document.documentElement.setAttribute('class', 'light')
       }
+      // 路由信息初始化
       const initRoute = {
         name: adminRoutes.children[0].name,
         title: adminRoutes.children[0].meta.title,
@@ -35,6 +38,9 @@ export const useSiteStore = defineStore('siteStore', {
       }
       this.tabRoute.push(initRoute)
       this.curentRoute = adminRoutes.children[0].name
+      // 站点配置初始化
+      const config = await useConfigApi.one('site_config')
+      config.code === 200 && (this.siteConfig = config.data)
     },
 
     changeTheme() {

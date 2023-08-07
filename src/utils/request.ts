@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AxiosInstance, Method } from 'axios'
+import type { AxiosInstance, Method, InternalAxiosRequestConfig } from 'axios'
 import { ElMessage } from 'element-plus'
 // import qs from 'qs'
 
@@ -30,6 +30,8 @@ class Request {
     //请求拦截器
     this.http.interceptors.request.use(
       (config) => {
+        const adminStore = useAdminStore()
+        config.headers['Authorization'] = adminStore.login?.token
         return config
       },
       (error) => {

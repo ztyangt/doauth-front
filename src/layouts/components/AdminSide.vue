@@ -23,8 +23,10 @@ const openeds = computed(() => {
 <template>
   <el-aside class="sidebar trf">
     <div class="logo flex-center my-2 pt-2 pb-4">
-      <img src="/favicon.svg" alt="DoAuth" />
-      <span v-show="!siteStore.sideCollapse" class="ml-1 trf">DoAuth</span>
+      <img :src="siteStore.siteConfig?.json.logo" :alt="siteStore.siteConfig?.json.site_name" />
+      <span v-show="!siteStore.sideCollapse" class="ml-1 trf">{{
+        siteStore.siteConfig?.json.site_name
+      }}</span>
     </div>
 
     <el-scrollbar view-class="scroll-wrapper">
@@ -134,9 +136,8 @@ const openeds = computed(() => {
   }
   span {
     color: #fff;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     display: inline-block;
-    height: 40px;
     line-height: 40px;
     padding-top: 2px;
     font-family: webfont_9y7Fpx5jLQvb_400, '阿里妈妈灵动体 VF Thin', webfont-notdef;

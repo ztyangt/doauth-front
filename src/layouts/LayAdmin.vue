@@ -60,6 +60,12 @@ watch(
     background-color: getVal(bgColor);
   }
 
+  .el-main {
+    @include respond-to('phone') {
+      --el-main-padding: 10px;
+    }
+  }
+
   .el-header,
   .el-tabs {
     @include useTheme {

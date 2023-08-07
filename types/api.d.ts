@@ -21,4 +21,21 @@ declare namespace Auth {
     token: string
     user: User
   }
+
+  interface Config {
+    create_time: number
+    delete_time: number
+    id: number
+    json: any
+    key: string
+    remark: string
+    result: { [key: string]: any }
+    text: string
+    update_time: number
+    value: string
+  }
+
+  interface SaveResult {
+    id: number
+  }
 }

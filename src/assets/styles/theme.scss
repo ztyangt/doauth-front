@@ -1,6 +1,6 @@
 // 全局主题变量配置 误删 ！！！
 $white-color: #fff;
-$black-color: #363a44;
+$black-color: #23252a;
 
 // 主题色
 $theme-color: #5973d1;
@@ -19,7 +19,7 @@ $curTheme: light;
 
 $themes: (
   light: (
-    bgColor: #f5f8fa,
+    bgColor: #f5f7f9,
     textColor: #4e5358,
     pureColor: $white-color,
     keyColor: #333333,
@@ -29,7 +29,7 @@ $themes: (
     themeBg1: mix($theme-color, #ffffff, 70%)
   ),
   dark: (
-    bgColor: #282b34,
+    bgColor: #18181c,
     textColor: #e5eef7,
     pureColor: $black-color,
     keyColor: #f8fafc,

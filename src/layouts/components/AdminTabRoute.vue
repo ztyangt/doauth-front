@@ -51,6 +51,9 @@ const methods = {
     color: getVal(textColor);
   }
 }
+:deep(.el-tabs__item) {
+  padding: 0 20px !important;
+}
 :deep(.el-tabs__header) {
   margin: 0 !important;
   height: 40px;
