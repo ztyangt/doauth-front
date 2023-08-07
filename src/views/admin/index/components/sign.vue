@@ -25,7 +25,7 @@ const tagStatus: ('success' | 'info' | 'warning' | 'danger')[] = ['success', 'wa
             :key="index"
             class="mx-1"
             effect="dark"
-            :type="tagStatus[index % siteConfig?.tags.length]"
+            :type="tagStatus[siteConfig?.tags.length % index]"
           >
             {{ tag }}
           </el-tag>

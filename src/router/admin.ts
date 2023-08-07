@@ -76,7 +76,7 @@ export const adminRoutes = {
           path: 'site',
           name: 'admin-config-site',
           component: () => import('@/views/admin/config/site.vue'),
-          meta: { title: '网站设置', icon: 'cogs1' }
+          meta: { title: '站点设置', icon: 'cogs1' }
         }
       ]
     },

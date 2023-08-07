@@ -7,7 +7,11 @@ const { siteConfig } = storeToRefs(siteStore)
 const methods = {
   handleSave: async () => {
     siteStore.loading = true
-    const res = await useConfigApi.save('site_config', null, JSON.stringify(siteStore.siteConfig))
+    const res = await useConfigApi.save(
+      'site_config',
+      undefined,
+      JSON.stringify(siteStore.siteConfig)
+    )
     netMessage(res)
     siteStore.loading = false
   }
