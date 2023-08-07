@@ -42,6 +42,11 @@ class Request {
     // 响应拦截器
     this.http.interceptors.response.use(
       (response) => {
+        if (response.data.code === 401) {
+          ElMessage.error(response.data.msg)
+          useHelper.clear.storage('admin')
+          window.location.href = '/'
+        }
         return response.data
       },
       (error) => {

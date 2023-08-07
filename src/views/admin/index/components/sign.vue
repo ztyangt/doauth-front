@@ -13,9 +13,9 @@ const tagStatus: ('success' | 'info' | 'warning' | 'danger')[] = ['success', 'wa
       <template #template>
         <AdminSign />
       </template>
-      <template #default>
+      <template v-if="siteConfig" #default>
         <div class="logo w-100 center">
-          <img class="" src="/assets/images/logo.svg" alt="doauth" />
+          <img class="" :src="siteConfig.logo" :alt="siteConfig.site_name" />
         </div>
         <h2 class="my-2">{{ siteConfig.site_name }}</h2>
         <p>{{ siteConfig.description }}</p>
