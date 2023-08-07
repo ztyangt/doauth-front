@@ -61,3 +61,21 @@ export const toggleFullscreen = () => {
     enterFullscreen()
   }
 }
+
+/**
+ * 多层对象赋值
+ * @param obj 目标对象
+ * @param key 键
+ * @param value 值
+ */
+export const setNestedValue = (obj: any, key: string | number, value: any) => {
+  for (const prop in obj) {
+    if (prop === key) {
+      obj[prop] = value
+      return
+    }
+    if (typeof obj[prop] === 'object') {
+      setNestedValue(obj[prop], key, value)
+    }
+  }
+}

@@ -4,7 +4,12 @@ import { storeToRefs } from 'pinia'
 const siteStore = useSiteStore()
 const { siteConfig } = storeToRefs(siteStore)
 
+const fileTarget = ref()
+
 const methods = {
+  /**
+   * 保存配置数据
+   */
   handleSave: async () => {
     siteStore.loading = true
     const res = await useConfigApi.save(
@@ -14,6 +19,23 @@ const methods = {
     )
     netMessage(res)
     siteStore.loading = false
+  },
+
+  /**
+   * 上传文件
+   * @param target 目标文件
+   */
+  handleUpload: (target: string) => {
+    fileTarget.value = target
+    const uploadRef = document.querySelector('#uploadRef') as HTMLInputElement
+    uploadRef.click()
+  },
+
+  /**
+   * 上传成功后
+   */
+  uploadSuccess: (val: string) => {
+    setNestedValue(siteStore.siteConfig, fileTarget.value, val)
   }
 }
 </script>
@@ -25,7 +47,11 @@ const methods = {
         <el-input v-model="siteConfig.site_name" placeholder="站点名字" />
       </el-form-item>
       <el-form-item label="站点logo">
-        <el-input v-model="siteConfig.logo" placeholder="请输入图片url或上传" />
+        <el-input type="text" v-model="siteConfig.logo" placeholder="请输入图片url或上传">
+          <template #append>
+            <Icon @click="methods.handleUpload('logo')" name="upload2"></Icon>
+          </template>
+        </el-input>
       </el-form-item>
       <el-form-item label="站点描述">
         <el-input v-model="siteConfig.description" placeholder="站点描述" />
@@ -46,6 +72,9 @@ const methods = {
     <el-button class="mt-2" type="primary" @click="methods.handleSave" :loading="siteStore.loading">
       提交保存
     </el-button>
+    <UploadFile v-show="false" :accept="'image/*'" @upload="methods.uploadSuccess">
+      <el-button type="primary" id="uploadRef">点击上传</el-button>
+    </UploadFile>
   </el-card>
 </template>
 

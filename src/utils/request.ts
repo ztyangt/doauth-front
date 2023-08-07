@@ -57,12 +57,18 @@ class Request {
     )
   }
 
-  private request<T>(url: string, method: Method, data: any = {}): Promise<RES<T>> {
+  private request<T>(
+    url: string,
+    method: Method,
+    data: any = {},
+    headers: any = {}
+  ): Promise<RES<T>> {
     return this.http({
       url,
       method,
       params: method == 'get' ? data : undefined,
-      data: method == 'post' ? data : undefined
+      data: method == 'post' ? data : undefined,
+      headers
       // data: method == 'post' ? qs.stringify(data) : null
     })
   }
@@ -70,8 +76,8 @@ class Request {
   public get<T>(url: string, data?: any) {
     return this.request<T>(url, 'get', data)
   }
-  public post<T>(url: string, data?: any) {
-    return this.request<T>(url, 'post', data)
+  public post<T>(url: string, data?: any, headers?: any) {
+    return this.request<T>(url, 'post', data, headers)
   }
   public delete<T>(url: string, data?: any) {
     return this.request<T>(url, 'delete', data)
