@@ -55,6 +55,10 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'static'
   },
+  server: {
+    host: '0.0.0.0',
+    port: 4000
+  },
   esbuild: {
     // drop: ['console', 'debugger']
   }

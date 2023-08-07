@@ -30,8 +30,8 @@ onMounted(() => {
   <div class="home-view flex-center">
     <div ref="tiltRef" class="main-card">
       <lottie-item class="disib" name="install" width="200px" height="200px" />
-      <h1>{{ siteConfig?.json.site_name }}</h1>
-      <p class="mt-1">{{ siteConfig?.json.description }}</p>
+      <h1>{{ siteConfig?.site_name }}</h1>
+      <p class="mt-1">{{ siteConfig?.description }}</p>
 
       <div class="flex-center mt-4 px-4">
         <el-button type="success" round class="w-50">授权查询</el-button>

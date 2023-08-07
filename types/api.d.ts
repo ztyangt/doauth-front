@@ -22,17 +22,24 @@ declare namespace Auth {
     user: User
   }
 
-  interface Config {
+  interface Config<T> {
     create_time: number
     delete_time: number
     id: number
-    json: any
+    json: T
     key: string
     remark: string
     result: { [key: string]: any }
     text: string
     update_time: number
     value: string
+  }
+
+  interface SiteConfigJson {
+    description: string
+    logo: string
+    site_name: string
+    tags: string[]
   }
 
   interface SaveResult {

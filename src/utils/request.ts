@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { AxiosInstance, Method, InternalAxiosRequestConfig } from 'axios'
+import type { AxiosInstance, Method } from 'axios'
 import { ElMessage } from 'element-plus'
 // import qs from 'qs'
 

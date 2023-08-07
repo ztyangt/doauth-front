@@ -23,9 +23,9 @@ const openeds = computed(() => {
 <template>
   <el-aside class="sidebar trf">
     <div class="logo flex-center my-2 pt-2 pb-4">
-      <img :src="siteStore.siteConfig?.json.logo" :alt="siteStore.siteConfig?.json.site_name" />
+      <img :src="siteStore.siteConfig?.logo" :alt="siteStore.siteConfig?.site_name" />
       <span v-show="!siteStore.sideCollapse" class="ml-1 trf">{{
-        siteStore.siteConfig?.json.site_name
+        siteStore.siteConfig?.site_name
       }}</span>
     </div>
 

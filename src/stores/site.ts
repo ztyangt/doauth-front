@@ -10,12 +10,13 @@ interface tabroute {
 
 export const useSiteStore = defineStore('siteStore', {
   state: () => ({
+    loading: false,
     theme: 'light',
     sideCollapse: false,
     asideLeft: false,
     tabRoute: [] as tabroute[],
     curentRoute: null as string | null,
-    siteConfig: null as null | Auth.Config
+    siteConfig: null as Auth.SiteConfigJson | null
   }),
   actions: {
     async initData() {
@@ -40,7 +41,7 @@ export const useSiteStore = defineStore('siteStore', {
       this.curentRoute = adminRoutes.children[0].name
       // 站点配置初始化
       const config = await useConfigApi.one('site_config')
-      config.code === 200 && (this.siteConfig = config.data)
+      config.code === 200 && (this.siteConfig = config.data.json)
     },
 
     changeTheme() {

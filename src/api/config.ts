@@ -18,7 +18,7 @@ class ConfigApi {
    * @returns
    */
   public one(key: string) {
-    return request.get<Auth.Config>('api/config/one', { key })
+    return request.get<Auth.Config<Auth.SiteConfigJson>>('api/config/one', { key })
   }
 
   /**
@@ -26,7 +26,7 @@ class ConfigApi {
    * @returns
    */
   public list() {
-    return request.get<Auth.Config[]>('api/config/list')
+    return request.get<Auth.Config<any>[]>('api/config/list')
   }
 
   /**
