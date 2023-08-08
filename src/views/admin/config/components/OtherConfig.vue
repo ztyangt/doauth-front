@@ -3,7 +3,7 @@ const config = reactive({
   openRegister: true
 })
 const methods = {
-  handleChange: async (e) => {
+  handleChange: async (e: string) => {
     const res = await useConfigApi.save('allow_register', e ? '1' : '0')
     netMessage(res, '设置成功')
   },

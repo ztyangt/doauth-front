@@ -113,7 +113,11 @@ const methods = {
           v-if="adminStore.login"
           class="avatar curp"
           :size="25"
-          :src="adminStore.login.user.avatar"
+          :src="
+            adminStore.login.user.avatar
+              ? adminStore.login.user.avatar
+              : '/assets/images/avatar.svg'
+          "
         />
 
         <template #dropdown>

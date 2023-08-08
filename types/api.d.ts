@@ -40,6 +40,7 @@ declare namespace Auth {
     logo: string
     site_name: string
     tags: string[]
+    sysdesc: string
   }
 
   interface EmailConfigJson {

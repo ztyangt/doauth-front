@@ -66,25 +66,26 @@ body ::-webkit-scrollbar-thumb {
 body ::-webkit-scrollbar-thumb:active {
   background-color: var(--theme-color);
 }
+*/
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 6px;
+  /* width: 8px; */
+  /* height: 6px; */
 }
 
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-3);
-  border-radius: 8px;
-  cursor: pointer;
+  /* background: var(--color-3); */
+  /* border-radius: 8px; */
+  /* cursor: pointer; */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--theme-color);
-  opacity: 1;
-  display: block !important;
+  /* background: var(--theme-color); */
+  /* opacity: 1; */
+  /* display: block !important; */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--transparent-color);
-}  */
+  /* background-color: var(--transparent-color); */
+}

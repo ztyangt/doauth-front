@@ -59,25 +59,39 @@ methods.getConfig()
     <template #header>
       <h3>邮件配置</h3>
     </template>
-    <el-form v-if="email_config" style="max-width: 800px">
-      <el-form-item label="服务地址">
-        <el-input v-model="email_config.host" placeholder="邮件服务器地址" />
-      </el-form-item>
-      <el-form-item label="服务端口">
-        <el-input type="text" v-model="email_config.port" placeholder="邮件服务端口" />
-      </el-form-item>
-      <el-form-item label="发信账号">
-        <el-input v-model="email_config.account" placeholder="发信邮件账号" />
-      </el-form-item>
-      <el-form-item label="服务密码">
-        <el-input v-model="email_config.password" placeholder="邮件服务密码" />
-      </el-form-item>
-      <el-form-item label="邮件主题">
-        <el-input v-model="email_config.subject" placeholder="邮件主题" />
-      </el-form-item>
-      <el-form-item label="邮件昵称">
-        <el-input v-model="email_config.nickname" placeholder="邮件昵称,请输入英文" />
-      </el-form-item>
+    <el-form v-if="email_config">
+      <el-row :gutter="15">
+        <el-col :span="24" :md="12" :lg="8">
+          <el-form-item label="服务地址">
+            <el-input v-model="email_config.host" placeholder="邮件服务器地址" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="24" :md="12" :lg="8">
+          <el-form-item label="服务端口">
+            <el-input type="text" v-model="email_config.port" placeholder="邮件服务端口" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="24" :md="12" :lg="8">
+          <el-form-item label="发信账号">
+            <el-input v-model="email_config.account" placeholder="发信邮件账号" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="24" :md="12" :lg="8">
+          <el-form-item label="服务密码">
+            <el-input v-model="email_config.password" placeholder="邮件服务密码" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="24" :md="12" :lg="8">
+          <el-form-item label="邮件主题">
+            <el-input v-model="email_config.subject" placeholder="邮件主题" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="24" :md="12" :lg="8">
+          <el-form-item label="邮件昵称">
+            <el-input v-model="email_config.nickname" placeholder="邮件昵称,请输入英文" />
+          </el-form-item>
+        </el-col>
+      </el-row>
 
       <div class="flex-sb w-100">
         <el-input v-model="receive" placeholder="接收者邮箱" />

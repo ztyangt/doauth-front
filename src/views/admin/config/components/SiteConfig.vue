@@ -60,6 +60,15 @@ const methods = {
       <el-form-item label="站点描述">
         <el-input v-model="siteConfig.description" placeholder="站点描述" />
       </el-form-item>
+      <el-form-item label="系统描述">
+        <el-input
+          v-model="siteConfig.sysdesc"
+          type="textarea"
+          placeholder="站点描述"
+          :autosize="{ minRows: 3, maxRows: 12 }"
+        />
+      </el-form-item>
+
       <el-form-item label="站点标签">
         <el-select
           v-model="siteConfig.tags"

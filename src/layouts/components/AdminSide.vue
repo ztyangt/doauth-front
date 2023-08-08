@@ -45,7 +45,7 @@ const openeds = computed(() => {
             <el-menu-item
               v-for="(subRoute, subindex) in route.children"
               :key="subindex"
-              :class="{ 'is-active': nowRoute.name === subRoute.name }"
+              :class="{ 'route-is-active': nowRoute.name === subRoute.name }"
               :index="`${adminRoutes.path}/${route.path}/${subRoute.path}`"
             >
               <Icon :name="`${subRoute.meta.icon}`" class="mr-1" />
@@ -56,7 +56,7 @@ const openeds = computed(() => {
           <el-menu-item
             v-else
             class="top-menu"
-            :class="{ 'is-active': nowRoute.name === route.name }"
+            :class="{ 'route-is-active': nowRoute.name === route.name }"
             :index="`${adminRoutes.path}/${route.path}`"
           >
             <Icon :name="`${route.meta.icon}`" class="mr-1" />
@@ -106,8 +106,8 @@ const openeds = computed(() => {
   @include useTheme {
     --el-menu-bg-color: getVal(themeBg);
   }
-  .el-sub-menu .is-active,
-  .top-menu.is-active {
+  .el-sub-menu .route-is-active,
+  .top-menu.route-is-active {
     color: #fff;
     background-color: adjust-hue($theme-color, 10);
   }

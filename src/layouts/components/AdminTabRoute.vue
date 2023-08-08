@@ -59,7 +59,7 @@ const methods = {
   height: 40px;
   line-height: 40px;
 }
-:deep(.el-tabs__item.is-active) {
+:deep(.el-tabs__item.route-is-active) {
   background-color: rgba($theme-color, 0.2);
   padding: 0 30px 0 30px;
   -webkit-mask: url('/assets/images/tabmask.png');
