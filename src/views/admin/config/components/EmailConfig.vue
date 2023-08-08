@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const siteStore = useSiteStore()
 const email_config = ref<Auth.EmailConfigJson | null>(null)
 
 const receive = ref('')

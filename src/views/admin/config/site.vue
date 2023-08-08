@@ -4,6 +4,7 @@
   <div>
     <SiteConfig />
     <EmailConfig class="mt-2" />
+    <OtherConfig class="mt-2" />
   </div>
 </template>
 

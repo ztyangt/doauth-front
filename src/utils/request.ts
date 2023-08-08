@@ -30,8 +30,8 @@ class Request {
     //请求拦截器
     this.http.interceptors.request.use(
       (config) => {
-        const Authorization = useHelper.get.storage('admin').token
-        config.headers['Authorization'] = Authorization ? Authorization : ''
+        const adminStore = useAdminStore()
+        config.headers['Authorization'] = adminStore.login?.token
         return config
       },
       (error) => {

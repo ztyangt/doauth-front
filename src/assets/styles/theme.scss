@@ -23,20 +23,22 @@ $themes: (
     textColor: #4e5358,
     pureColor: $white-color,
     keyColor: #333333,
-    mutedColor: #414858,
+    mutedColor: #b2b4b8,
     titleColor: #252525,
     themeBg: mix($theme-color, #ffffff, 80%),
-    themeBg1: mix($theme-color, #ffffff, 70%)
+    themeBg1: mix($theme-color, #ffffff, 70%),
+    shadow: 0 0 10px hsl(0deg 0% 45% / 14%)
   ),
   dark: (
     bgColor: #18181c,
     textColor: #e5eef7,
     pureColor: $black-color,
     keyColor: #f8fafc,
-    mutedColor: #b4b6bb,
+    mutedColor: #717276,
     titleColor: #f2f6fc,
     themeBg: mix($theme-color, #000000, 40%),
-    themeBg1: mix($theme-color, #000000, 60%)
+    themeBg1: mix($theme-color, #000000, 60%),
+    shadow: 0 0 10px hsl(0deg 0% 9% / 45%)
   )
 );
 

@@ -32,13 +32,15 @@ watch(
         <AdminHeader />
       </el-header>
       <AdminTabRoute />
-      <el-main>
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
-      </el-main>
+      <el-scrollbar view-class="scroll-wrapper" height="calc(100vh - 105px)">
+        <el-main class="main-wrapper">
+          <router-view v-slot="{ Component }">
+            <transition name="fade" mode="out-in">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+        </el-main>
+      </el-scrollbar>
     </el-container>
   </el-container>
 </template>
@@ -53,9 +55,12 @@ watch(
 .fade-leave-to {
   opacity: 0;
 }
-
+.scroll-wrapper {
+  height: 100px;
+}
 .layout-admin {
   min-height: 100vh;
+
   @include useTheme {
     background-color: getVal(bgColor);
   }
