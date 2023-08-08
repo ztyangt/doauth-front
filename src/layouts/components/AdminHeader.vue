@@ -56,6 +56,9 @@ const methods = {
     if (command === 'goHome') {
       router.push('/')
     }
+    if (command === 'userConfig') {
+      router.push({ name: 'admin-config-user' })
+    }
   }
 }
 </script>
@@ -122,7 +125,7 @@ const methods = {
 
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>
+            <el-dropdown-item command="userConfig">
               <Icon name="user3" class="mr-1" />
               <span>个人设置</span>
             </el-dropdown-item>

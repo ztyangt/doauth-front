@@ -2,6 +2,7 @@
 import { adminRoutes } from '@/router/admin'
 
 const siteStore = useSiteStore()
+const adminStore = useAdminStore()
 const nowRoute = useRoute()
 
 const asideWidth = computed(() => {
@@ -33,7 +34,7 @@ const openeds = computed(() => {
       <el-menu :collapse="siteStore.sideCollapse" :default-openeds="openeds" router>
         <template v-for="(route, index) in adminRoutes.children" :key="index">
           <el-sub-menu
-            v-if="route.children"
+            v-if="route.children && !(route.meta.admin && adminStore.login?.user.level !== 1)"
             :index="route.name"
             :class="{ expand: nowRoute.matched[1].name === route.name }"
           >
@@ -42,26 +43,29 @@ const openeds = computed(() => {
               <span>{{ route.meta.title }}</span>
             </template>
 
-            <el-menu-item
-              v-for="(subRoute, subindex) in route.children"
-              :key="subindex"
-              :class="{ 'route-is-active': nowRoute.name === subRoute.name }"
-              :index="`${adminRoutes.path}/${route.path}/${subRoute.path}`"
-            >
-              <Icon :name="`${subRoute.meta.icon}`" class="mr-1" />
-              <span>{{ subRoute.meta.title }}</span>
-            </el-menu-item>
+            <template v-for="(subRoute, subindex) in route.children" :key="subindex">
+              <el-menu-item
+                v-if="!(subRoute.meta.admin && adminStore.login?.user.level !== 1)"
+                :class="{ 'route-is-active': nowRoute.name === subRoute.name }"
+                :index="`${adminRoutes.path}/${route.path}/${subRoute.path}`"
+              >
+                <Icon :name="`${subRoute.meta.icon}`" class="mr-1" />
+                <span>{{ subRoute.meta.title }}</span>
+              </el-menu-item>
+            </template>
           </el-sub-menu>
 
-          <el-menu-item
-            v-else
-            class="top-menu"
-            :class="{ 'route-is-active': nowRoute.name === route.name }"
-            :index="`${adminRoutes.path}/${route.path}`"
-          >
-            <Icon :name="`${route.meta.icon}`" class="mr-1" />
-            <span>{{ route.meta.title }}</span>
-          </el-menu-item>
+          <template v-else>
+            <el-menu-item
+              v-if="!(route.meta.admin && adminStore.login?.user.level !== 1)"
+              class="top-menu"
+              :class="{ 'route-is-active': nowRoute.name === route.name }"
+              :index="`${adminRoutes.path}/${route.path}`"
+            >
+              <Icon :name="`${route.meta.icon}`" class="mr-1" />
+              <span>{{ route.meta.title }}</span>
+            </el-menu-item>
+          </template>
         </template>
       </el-menu>
     </el-scrollbar>
