@@ -2,6 +2,8 @@
 defineProps<{
   visible: boolean
 }>()
+
+const login = ref(true)
 </script>
 
 <template>
@@ -17,11 +19,16 @@ defineProps<{
   >
     <template #header>
       <div class="my-header tl">
-        <div class="login-title pb-1">登录</div>
-        <span class="txt fs-12 disib mt-1 curp hovc trf"> 没有账号？立即注册> </span>
+        <div class="login-title pb-1">{{ login ? '登录' : '注册' }}</div>
+        <span @click="login = !login" class="txt fs-12 disib mt-1 curp hovc trf">
+          {{ login ? '没有账号？立即注册>' : '已有账号？返回登录>' }}
+        </span>
       </div>
     </template>
-    <Login />
+    <div v-auto-animate>
+      <Login v-if="login" />
+      <Register v-else />
+    </div>
   </el-dialog>
 </template>
 
@@ -56,9 +63,7 @@ defineProps<{
   }
 
   .txt {
-    @include useTheme {
-      color: getVal(mutedColor);
-    }
+    color: #737881;
   }
 }
 </style>

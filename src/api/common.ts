@@ -31,15 +31,23 @@ class CommApi {
    * @param nickname 昵称
    * @param email 邮箱
    * @param password 密码
-   * @param authcode 验证码
+   * @param code 验证码
    */
   public register(
     account: string,
     nickname: string,
     email: string,
     password: string,
-    authcode?: string
-  ) {}
+    code?: string
+  ) {
+    return request.post<Auth.Login>('api/comm/register', {
+      account,
+      nickname,
+      email,
+      password,
+      code
+    })
+  }
 
   /**
    * 发送邮件

@@ -6,8 +6,14 @@ const methods = {
   handleChange: async (e) => {
     const res = await useConfigApi.save('allow_register', e ? '1' : '0')
     netMessage(res, '设置成功')
+  },
+  getConfig: async () => {
+    const res = await useConfigApi.one('allow_register')
+    res.code === 200 && (config.openRegister = res.data.value === '1' ? true : false)
   }
 }
+
+methods.getConfig()
 </script>
 
 <template>
