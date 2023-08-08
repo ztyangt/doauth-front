@@ -20,7 +20,7 @@ onMounted(() => {})
 @use 'element-plus/theme-chalk/src/dark/css-vars.scss';
 .hovc {
   &:hover {
-    color: $theme-color;
+    color: $theme-color !important;
   }
 }
 #nprogress .bar {

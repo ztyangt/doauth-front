@@ -42,6 +42,15 @@ declare namespace Auth {
     tags: string[]
   }
 
+  interface EmailConfigJson {
+    account: string
+    host: string
+    nickname: string
+    password: string
+    port: string
+    subject: string
+  }
+
   interface SaveResult {
     id: number
   }

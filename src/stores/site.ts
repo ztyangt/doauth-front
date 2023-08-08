@@ -10,7 +10,6 @@ interface tabroute {
 
 export const useSiteStore = defineStore('siteStore', {
   state: () => ({
-    loading: false,
     theme: 'light',
     sideCollapse: false,
     asideLeft: false,

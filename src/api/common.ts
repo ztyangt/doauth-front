@@ -13,15 +13,64 @@ class CommApi {
   }
 
   /**
-   * 管理员登录
-   * @param account 管理员账户或邮箱
-   * @param password 管理员密码
+   * 登录
+   * @param account 账户或邮箱
+   * @param password 密码
    * @returns
    */
   public login(account: string, password: string) {
     return request.post<Auth.Login>('api/comm/login', {
       account,
       password
+    })
+  }
+
+  /**
+   * 用户注册
+   * @param account 账号
+   * @param nickname 昵称
+   * @param email 邮箱
+   * @param password 密码
+   * @param authcode 验证码
+   */
+  public register(
+    account: string,
+    nickname: string,
+    email: string,
+    password: string,
+    authcode?: string
+  ) {}
+
+  /**
+   * 发送邮件
+   * @param host 邮件服务器地址
+   * @param port 邮件服务端口
+   * @param account 发信邮件账号
+   * @param password 服务密码
+   * @param subject 邮件主题
+   * @param nickname 发信昵称
+   * @param content 邮件正文
+   * @param receive 收信邮箱
+   */
+  public email(
+    host: string,
+    port: number,
+    account: string,
+    password: string,
+    subject: string,
+    nickname: string,
+    content: string,
+    receive: string
+  ) {
+    return request.post('api/comm/send-email', {
+      host,
+      port,
+      account,
+      password,
+      subject,
+      nickname,
+      content,
+      receive
     })
   }
 }
