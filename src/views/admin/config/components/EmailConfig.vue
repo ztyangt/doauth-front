@@ -57,7 +57,7 @@ methods.getConfig()
 <template>
   <el-card class="box-card cus-box-card" shadow="hover">
     <template #header>
-      <h3>邮件配置</h3>
+      <h3>邮件服务</h3>
     </template>
     <el-form v-if="email_config">
       <el-row :gutter="15">

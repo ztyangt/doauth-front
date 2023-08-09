@@ -125,7 +125,12 @@ const methods = {
 
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="userConfig">
+            <div class="px-2">
+              <h3>{{ adminStore.login.user.nickname }}</h3>
+              <span class="mt-1">{{ adminStore.login.user.account }}</span>
+            </div>
+
+            <el-dropdown-item divided command="userConfig">
               <Icon name="user3" class="mr-1" />
               <span>个人设置</span>
             </el-dropdown-item>
@@ -137,7 +142,7 @@ const methods = {
               <Icon name="home" class="mr-1" />
               <span>回到前台</span>
             </el-dropdown-item>
-            <el-dropdown-item divided command="logout">
+            <el-dropdown-item command="logout">
               <Icon name="signout" class="mr-1" />
               <span>退出登录</span>
             </el-dropdown-item>

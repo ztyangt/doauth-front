@@ -35,6 +35,25 @@ declare namespace Auth {
     value: string
   }
 
+  interface User {
+    account: string
+    avatar: string
+    create_time: number
+    delete_time: number
+    description: string
+    email: string
+    id: number
+    json: null
+    level: number
+    login_time: number
+    nickname: string
+    password: string
+    remark: string
+    result: { [key: string]: any }
+    text: string
+    update_time: number
+  }
+
   interface SiteConfigJson {
     description: string
     logo: string
@@ -55,4 +74,6 @@ declare namespace Auth {
   interface SaveResult {
     id: number
   }
+
+  interface UserList extends ResList<User> {}
 }

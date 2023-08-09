@@ -3,3 +3,9 @@ interface RES<T> {
   data: T
   msg: string
 }
+
+interface ResList<T> {
+  page: number
+  count: number
+  data: T[]
+}
