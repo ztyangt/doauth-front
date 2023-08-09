@@ -64,7 +64,7 @@ const methods = {
 </script>
 
 <template>
-  <div v-if="adminStore.login" class="toolbar wh-100 flex-yc flex-sb">
+  <div v-if="adminStore.user" class="toolbar wh-100 flex-yc flex-sb">
     <div class="header-left flex">
       <div class="side-btn curp">
         <Icon name="indent" class="trf hovc collbtn" @click="methods.handleCollapse" />
@@ -113,21 +113,17 @@ const methods = {
 
       <el-dropdown @command="methods.handleCommand">
         <el-avatar
-          v-if="adminStore.login"
+          v-if="adminStore.user"
           class="avatar curp"
           :size="25"
-          :src="
-            adminStore.login.user.avatar
-              ? adminStore.login.user.avatar
-              : '/assets/images/avatar.svg'
-          "
+          :src="adminStore.user.avatar ? adminStore.user.avatar : '/assets/images/avatar.svg'"
         />
 
         <template #dropdown>
           <el-dropdown-menu>
             <div class="px-2">
-              <h3>{{ adminStore.login.user.nickname }}</h3>
-              <span class="mt-1">{{ adminStore.login.user.account }}</span>
+              <h3>{{ adminStore.user.nickname }}</h3>
+              <span class="mt-1">{{ adminStore.user.account }}</span>
             </div>
 
             <el-dropdown-item divided command="userConfig">

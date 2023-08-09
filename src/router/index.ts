@@ -105,7 +105,7 @@ router.beforeEach(async (to, from, next) => {
       next('/')
       return
     }
-    if (to.meta.admin && adminStore.login?.user.level !== 1) {
+    if (to.meta.admin && adminStore.user?.level !== 1) {
       next('/admin')
       return
     }

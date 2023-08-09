@@ -5,6 +5,7 @@ declare namespace Auth {
     create_time: number
     delete_time: number
     description: string
+    gender: number
     email: string
     id: number
     json: null

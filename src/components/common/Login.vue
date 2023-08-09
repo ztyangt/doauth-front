@@ -32,7 +32,7 @@ const methods = {
     await formEl.validate(async (valid) => {
       if (valid) {
         isLoading.value = true
-        const login = await useCommApi.login(userForm.account, userForm.password)
+        const login = await useUserApi.login(userForm.account, userForm.password)
         isLoading.value = false
         netMessage(login)
         login.code === 200 && methods.afterLogin(login.data)
@@ -42,8 +42,8 @@ const methods = {
 
   afterLogin: (data: Auth.Login) => {
     const adminStore = useAdminStore()
-    adminStore.$patch({ login: data })
-    useHelper.set.storage('admin', { ...data, time: 7200 })
+    adminStore.$patch({ user: data.user, token: data.token })
+    useHelper.set.storage('DOAUTH_TOKEN', { token: data.token, uid: data.user.id, time: 7200 })
     router.push('/admin')
   }
 }

@@ -31,7 +31,7 @@ class Request {
     this.http.interceptors.request.use(
       (config) => {
         const adminStore = useAdminStore()
-        config.headers['Authorization'] = adminStore.login?.token
+        config.headers['Authorization'] = adminStore.token
         return config
       },
       (error) => {
@@ -44,7 +44,7 @@ class Request {
       (response) => {
         if (response.data.code === 401) {
           ElMessage.error(response.data.msg)
-          useHelper.clear.storage('admin')
+          useHelper.clear.storage('DOAUTH_TOKEN')
           window.location.href = '/'
         }
         return response.data
@@ -67,7 +67,7 @@ class Request {
       url,
       method,
       params: method == 'get' ? data : undefined,
-      data: method == 'post' ? data : undefined,
+      data: method !== 'get' ? data : undefined,
       headers
       // data: method == 'post' ? qs.stringify(data) : null
     })

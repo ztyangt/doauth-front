@@ -67,7 +67,7 @@ const methods = {
    * 提交数据
    */
   handleSubmit: async (): Promise<RES<Auth.Login>> => {
-    return await useCommApi.register(
+    return await useUserApi.register(
       userForm.account,
       userForm.nickname,
       userForm.email,
@@ -108,9 +108,9 @@ const methods = {
 
   afterLogin: (data: Auth.Login) => {
     const adminStore = useAdminStore()
-    adminStore.$patch({ login: data })
-    useHelper.set.storage('admin', { ...data, time: 7200 })
-    router.push('/admin')
+    adminStore.$patch({ user: data.user, token: data.token })
+    useHelper.set.storage('DOAUTH_TOKEN', { token: data.token, uid: data.user.id, time: 7200 })
+    router.replace('/admin')
   }
 }
 </script>

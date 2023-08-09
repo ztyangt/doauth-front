@@ -34,7 +34,7 @@ const openeds = computed(() => {
       <el-menu :collapse="siteStore.sideCollapse" :default-openeds="openeds" router>
         <template v-for="(route, index) in adminRoutes.children" :key="index">
           <el-sub-menu
-            v-if="route.children && !(route.meta.admin && adminStore.login?.user.level !== 1)"
+            v-if="route.children && !(route.meta.admin && adminStore.user?.level !== 1)"
             :index="route.name"
             :class="{ expand: nowRoute.matched[1].name === route.name }"
           >
@@ -45,7 +45,7 @@ const openeds = computed(() => {
 
             <template v-for="(subRoute, subindex) in route.children" :key="subindex">
               <el-menu-item
-                v-if="!(subRoute.meta.admin && adminStore.login?.user.level !== 1)"
+                v-if="!(subRoute.meta.admin && adminStore.user?.level !== 1)"
                 :class="{ 'route-is-active': nowRoute.name === subRoute.name }"
                 :index="`${adminRoutes.path}/${route.path}/${subRoute.path}`"
               >
@@ -57,7 +57,7 @@ const openeds = computed(() => {
 
           <template v-else>
             <el-menu-item
-              v-if="!(route.meta.admin && adminStore.login?.user.level !== 1)"
+              v-if="!(route.meta.admin && adminStore.user?.level !== 1)"
               class="top-menu"
               :class="{ 'route-is-active': nowRoute.name === route.name }"
               :index="`${adminRoutes.path}/${route.path}`"
