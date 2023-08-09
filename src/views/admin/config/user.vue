@@ -12,18 +12,19 @@ const methods = {
    * 保存配置数据
    */
   handleSave: async () => {
-    loading.value = true
-    console.log(user.value)
-    const res = await useUserApi.update(
-      user.value.id,
-      user.value.email,
-      user.value.nickname,
-      user.value.gender,
-      user.value.description,
-      user.value.avatar
-    )
-    netMessage(res)
-    loading.value = false
+    if (user.value) {
+      loading.value = true
+      const res = await useUserApi.update(
+        user.value.id,
+        user.value.email,
+        user.value.nickname,
+        user.value.gender,
+        user.value.description,
+        user.value.avatar
+      )
+      netMessage(res)
+      loading.value = false
+    }
   },
 
   /**

@@ -60,7 +60,7 @@ const uploadRef = ref<UploadInstance>()
 const adminStore = useAdminStore()
 
 const headers = {
-  Authorization: adminStore.login?.token
+  Authorization: adminStore.token
 }
 
 const filelist = computed({
