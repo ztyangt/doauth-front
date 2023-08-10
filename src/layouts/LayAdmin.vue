@@ -27,13 +27,13 @@ watch(
   <el-container class="layout-admin">
     <AdminSide />
 
-    <el-container>
+    <el-container class="main-container">
       <el-header>
         <AdminHeader />
       </el-header>
       <AdminTabRoute />
       <el-scrollbar view-class="scroll-wrapper" height="calc(100vh - 105px)">
-        <el-main class="main-wrapper">
+        <el-main class="main-wrapper h-100">
           <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
               <component :is="Component" />
@@ -63,6 +63,13 @@ watch(
 
   @include useTheme {
     background-color: getVal(bgColor);
+  }
+
+  .main-container {
+    flex-direction: column !important;
+  }
+  .scroll-wrapper {
+    height: 100%;
   }
 
   .el-main {

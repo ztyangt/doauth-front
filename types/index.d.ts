@@ -9,3 +9,10 @@ interface ResList<T> {
   count: number
   data: T[]
 }
+
+interface tabroute {
+  name: string
+  title: string
+  path: string
+  icon: string
+}

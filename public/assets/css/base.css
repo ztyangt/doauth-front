@@ -529,6 +529,10 @@
   display: none;
 }
 
+.br {
+  border-radius: 5px;
+}
+
 .br-50 {
   border-radius: 50%;
   overflow: hidden

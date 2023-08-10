@@ -102,7 +102,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.path.startsWith('/admin')) {
     const adminStore = useAdminStore()
     if (!adminStore.hasLogin()) {
-      next('/')
+      next(toLoginRoute(to.path, to.query))
       return
     }
     if (to.meta.admin && adminStore.user?.level !== 1) {

@@ -2,9 +2,11 @@
 import type { FormInstance, FormRules } from 'element-plus'
 
 const router = useRouter()
+const route = useRoute()
 
 const loginFormRef = ref<FormInstance>()
 const isLoading = ref<boolean>(false)
+const redirect = ref(decodeURIComponent(((route.query && route.query.redirect) as string) || '/'))
 
 const userForm = reactive({
   account: '',
@@ -23,6 +25,12 @@ const rules = reactive<FormRules>({
 })
 
 const methods = {
+  /**
+   * 获取重定向路由
+   */
+  handleRoute: () => {
+    return redirect.value === '/404' || redirect.value === '/403' ? '/' : redirect.value
+  },
   /**
    * 登录
    */
@@ -45,7 +53,7 @@ const methods = {
     adminStore.$patch({ user: data.user, token: data.token })
     useHelper.set.storage('DOAUTH_ADMIN', { ...data, time: 7200 })
     useSiteStore().initData()
-    router.push('/admin')
+    router.push(methods.handleRoute())
   }
 }
 </script>

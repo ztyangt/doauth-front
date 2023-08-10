@@ -48,8 +48,9 @@ const methods = {
         autofocus: false
       })
         .then(() => {
-          router.push('/')
           adminStore.clear()
+          router.push(toLoginRoute(route.path, route.query))
+
           ElMessage({
             type: 'success',
             message: '退出登录'

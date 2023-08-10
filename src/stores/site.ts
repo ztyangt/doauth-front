@@ -1,13 +1,6 @@
 import { defineStore } from 'pinia'
 import { adminRoutes } from '@/router/admin'
 
-interface tabroute {
-  name: string
-  title: string
-  path: string
-  icon: string
-}
-
 export const useSiteStore = defineStore('siteStore', {
   state: () => ({
     sideCollapse: false,
@@ -16,6 +9,7 @@ export const useSiteStore = defineStore('siteStore', {
     curentRoute: null as string | null,
     siteConfig: null as Auth.SiteConfigJson | null
   }),
+
   actions: {
     async initData() {
       // 路由信息初始化
@@ -25,6 +19,7 @@ export const useSiteStore = defineStore('siteStore', {
         path: adminRoutes.path,
         icon: adminRoutes.children[0].meta.icon
       }
+      this.tabRoute = []
       this.tabRoute.push(initRoute)
       this.curentRoute = adminRoutes.children[0].name
       // 站点配置初始化

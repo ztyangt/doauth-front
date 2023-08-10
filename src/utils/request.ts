@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type { AxiosInstance, Method } from 'axios'
 import { ElMessage } from 'element-plus'
-// import qs from 'qs'
+import router from '@/router/index' // import qs from 'qs'
 
 class Request {
   private static instance: Request
@@ -43,9 +43,10 @@ class Request {
     this.http.interceptors.response.use(
       (response) => {
         if (response.data.code === 401) {
+          const adminStore = useAdminStore()
           ElMessage.error(response.data.msg)
-          useHelper.clear.storage('DOAUTH_ADMIN')
-          window.location.href = '/'
+          adminStore.clear()
+          router.push(toLoginRoute(router.currentRoute.value.path, router.currentRoute.value.query))
         }
         return response.data
       },
