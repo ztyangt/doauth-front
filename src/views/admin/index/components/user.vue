@@ -11,7 +11,7 @@ const { user } = storeToRefs(adminStore)
       <template #template>
         <AdminSign />
       </template>
-      <template #default>
+      <template #default v-if="user">
         <div class="logo flex-center br-50 overhide">
           <img
             class="wh-100 br-50"

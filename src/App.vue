@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDark } from '@vueuse/core'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 const config = reactive({
   max: 3
@@ -24,8 +25,9 @@ onMounted(() => {})
 </script>
 
 <template>
-  <el-config-provider :message="config"> </el-config-provider>
-  <router-view />
+  <el-config-provider :message="config" :locale="zhCn">
+    <router-view />
+  </el-config-provider>
 </template>
 
 <style lang="scss">

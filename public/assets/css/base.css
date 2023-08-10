@@ -517,6 +517,12 @@
   cursor: pointer
 }
 
+.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+}
+
 .disib {
   display: inline-block;
 }

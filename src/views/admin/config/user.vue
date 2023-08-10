@@ -16,15 +16,16 @@ const methods = {
       loading.value = true
       const res = await useUserApi.update(
         user.value.id,
-        user.value.email,
+        user.value.account,
         user.value.nickname,
+        user.value.email,
         user.value.gender,
-        user.value.description,
-        user.value.avatar
+        user.value.avatar,
+        user.value.description
       )
       netMessage(res)
       loading.value = false
-      adminStore.updateUser()
+      res.code === 200 && adminStore.updateUser()
     }
   },
 
@@ -53,11 +54,14 @@ const methods = {
       <h3>站点信息</h3>
     </template>
     <el-form v-if="user" style="max-width: 800px">
+      <el-form-item label="账号">
+        <el-input v-model="user.account" placeholder="请输入账号" />
+      </el-form-item>
       <el-form-item label="昵称">
-        <el-input v-model="user.nickname" placeholder="请输入你的昵称" />
+        <el-input v-model="user.nickname" placeholder="请输入昵称" />
       </el-form-item>
       <el-form-item label="邮箱">
-        <el-input v-model="user.email" placeholder="请输入你的邮箱" />
+        <el-input v-model="user.email" placeholder="请输入邮箱" />
       </el-form-item>
       <el-form-item label="头像">
         <el-input type="text" v-model="user.avatar" placeholder="请输入图片url或上传">

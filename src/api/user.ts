@@ -60,19 +60,21 @@ class UserApi {
    */
   public update(
     id: number,
-    email?: string,
+    account?: string,
     nickname?: string,
+    email?: string,
     gender?: number,
-    description?: string,
-    avatar?: string
+    avatar?: string,
+    description?: string
   ) {
     return request.put('api/users/update', {
       id,
-      email,
+      account,
       nickname,
+      email,
       gender,
-      description,
-      avatar
+      avatar,
+      description
     })
   }
 
