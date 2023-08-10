@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDark, useToggle } from '@vueuse/core'
+
 const adminStore = useAdminStore()
 const siteStore = useSiteStore()
 const router = useRouter()
@@ -7,6 +9,9 @@ const route = useRoute()
 const breadList = computed(() => {
   return route.matched.filter((item) => item.name)
 })
+
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 
 const methods = {
   /**
@@ -96,14 +101,14 @@ const methods = {
       <el-tooltip
         class="box-item"
         effect="dark"
-        :content="siteStore.theme === 'light' ? '夜间模式' : '日间模式'"
+        :content="!isDark ? '夜间模式' : '日间模式'"
         placement="bottom"
       >
         <Icon
           class="mr-2 curp trf hovc"
           size="18px"
-          @click="siteStore.changeTheme"
-          :name="siteStore.theme === 'light' ? 'moono' : 'certificate'"
+          @click="toggleDark()"
+          :name="!isDark ? 'moono' : 'certificate'"
         />
       </el-tooltip>
 

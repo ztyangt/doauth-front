@@ -24,7 +24,11 @@ const openeds = computed(() => {
 <template>
   <el-aside class="sidebar trf">
     <div class="logo flex-center my-2 pt-2 pb-4">
-      <img :src="siteStore.siteConfig?.logo" :alt="siteStore.siteConfig?.site_name" />
+      <img
+        v-if="siteStore.siteConfig"
+        :src="siteStore.siteConfig?.logo"
+        :alt="siteStore.siteConfig?.site_name"
+      />
       <span v-show="!siteStore.sideCollapse" class="ml-1 trf">{{
         siteStore.siteConfig?.site_name
       }}</span>
@@ -91,7 +95,6 @@ const openeds = computed(() => {
   display: flex;
   flex-direction: column;
   width: v-bind(asideWidth);
-  z-index: 99;
   @include useTheme {
     background-color: getVal(themeBg);
   }
@@ -129,6 +132,7 @@ const openeds = computed(() => {
   }
 }
 .logo {
+  height: 90px;
   flex-shrink: 0;
   @include useTheme {
     border-bottom: 1px solid rgba(#fff, 0.3);

@@ -109,7 +109,8 @@ const methods = {
   afterLogin: (data: Auth.Login) => {
     const adminStore = useAdminStore()
     adminStore.$patch({ user: data.user, token: data.token })
-    useHelper.set.storage('DOAUTH_TOKEN', { token: data.token, uid: data.user.id, time: 7200 })
+    useHelper.set.storage('DOAUTH_ADMIN', { ...data, time: 7200 })
+    useSiteStore().initData()
     router.replace('/admin')
   }
 }

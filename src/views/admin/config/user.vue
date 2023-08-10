@@ -24,6 +24,7 @@ const methods = {
       )
       netMessage(res)
       loading.value = false
+      adminStore.updateUser()
     }
   },
 

@@ -11,7 +11,7 @@ const { user } = storeToRefs(adminStore)
       <template #template>
         <AdminSign />
       </template>
-      <template v-if="user" #default>
+      <template #default>
         <div class="logo flex-center br-50 overhide">
           <img
             class="wh-100 br-50"
@@ -70,6 +70,7 @@ h2 {
     height: 20px;
     width: 20px;
     line-height: 20px;
+    color: #fff;
   }
   .female {
     background-color: #ff4d94;

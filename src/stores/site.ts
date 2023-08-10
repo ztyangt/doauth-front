@@ -10,7 +10,6 @@ interface tabroute {
 
 export const useSiteStore = defineStore('siteStore', {
   state: () => ({
-    theme: 'light',
     sideCollapse: false,
     asideLeft: false,
     tabRoute: [] as tabroute[],
@@ -19,16 +18,6 @@ export const useSiteStore = defineStore('siteStore', {
   }),
   actions: {
     async initData() {
-      // 主题初始化
-      const theme = useHelper.get.cookie('themeMode')
-      if (theme) {
-        this.theme = theme
-        // window.document.documentElement.setAttribute('data-theme', theme)
-        window.document.documentElement.setAttribute('class', theme)
-      } else {
-        // window.document.documentElement.setAttribute('data-theme', 'light')
-        window.document.documentElement.setAttribute('class', 'light')
-      }
       // 路由信息初始化
       const initRoute = {
         name: adminRoutes.children[0].name,
@@ -41,17 +30,6 @@ export const useSiteStore = defineStore('siteStore', {
       // 站点配置初始化
       const config = await useConfigApi.one('site_config')
       config.code === 200 && (this.siteConfig = config.data.json)
-    },
-
-    changeTheme() {
-      if (this.theme === 'light') {
-        this.theme = 'dark'
-      } else {
-        this.theme = 'light'
-      }
-      // window.document.documentElement.setAttribute('data-theme', this.theme)
-      window.document.documentElement.setAttribute('class', this.theme)
-      useHelper.set.cookie('themeMode', this.theme)
     }
   }
 })

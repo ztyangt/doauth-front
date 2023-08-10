@@ -7,27 +7,37 @@ export const useAdminStore = defineStore('adminStore', {
   }),
   actions: {
     async initData() {
-      const admin = useHelper.get.storage('DOAUTH_TOKEN')
+      const admin = useHelper.get.storage('DOAUTH_ADMIN')
       if (admin) {
         this.token = admin.token
-        const user = await useUserApi.one(admin.uid)
+        this.user = admin.user
+      } else {
+        this.clear()
+      }
+    },
+
+    /**
+     * 更新用户信息
+     * @param uid 用户id
+     */
+    async updateUser() {
+      if (this.user) {
+        const user = await useUserApi.one(this.user.id)
         if (user.code === 200) {
           this.user = user.data
-        } else {
-          this.clear()
+          useHelper.set.storage('DOAUTH_ADMIN', { token: this.token, user: user.data, time: 7200 })
         }
-      } else {
-        useHelper.clear.storage('DOAUTH_TOKEN')
       }
     },
 
     hasLogin() {
-      return this.token !== null
+      return this.user !== null
     },
 
     clear() {
       this.token = null
-      useHelper.clear.storage('DOAUTH_TOKEN')
+      this.user = null
+      useHelper.clear.storage('DOAUTH_ADMIN')
     }
   }
 })

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.7.0",
+    "@vueuse/core": "^10.3.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.8",
     "lottie-web": "^5.12.2",

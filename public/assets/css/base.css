@@ -567,10 +567,6 @@
 
 
 
-
-
-
-
 .layout-169:after {
   padding-top: 56.25%;
   content: '';
@@ -625,7 +621,8 @@
   opacity: 0;
 }
 
-.show {
+.show,
+.loaded {
   visibility: visible;
   opacity: 1;
 }

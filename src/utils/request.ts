@@ -44,7 +44,7 @@ class Request {
       (response) => {
         if (response.data.code === 401) {
           ElMessage.error(response.data.msg)
-          useHelper.clear.storage('DOAUTH_TOKEN')
+          useHelper.clear.storage('DOAUTH_ADMIN')
           window.location.href = '/'
         }
         return response.data
