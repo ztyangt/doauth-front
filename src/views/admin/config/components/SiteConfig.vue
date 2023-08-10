@@ -20,6 +20,7 @@ const methods = {
     )
     netMessage(res)
     loading.value = false
+    siteStore.updateConfig()
   },
 
   /**

@@ -28,8 +28,21 @@ export const useSiteStore = defineStore('siteStore', {
       this.tabRoute.push(initRoute)
       this.curentRoute = adminRoutes.children[0].name
       // 站点配置初始化
+      const storage = useHelper.get.storage('SITE_CONFIG')
+      if (storage) {
+        this.siteConfig = storage
+      } else {
+        this.updateConfig()
+      }
+    },
+
+    /**
+     * 更新站点信息
+     */
+    async updateConfig() {
       const config = await useConfigApi.one('site_config')
       config.code === 200 && (this.siteConfig = config.data.json)
+      useHelper.set.storage('SITE_CONFIG', config.data.json)
     }
   }
 })

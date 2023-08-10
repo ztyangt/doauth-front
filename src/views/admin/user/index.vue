@@ -13,7 +13,7 @@ methods.initData()
 </script>
 
 <template>
-  <div>{{ adminStore.user?.level }}</div>
+  <div>{{ userList }}</div>
 </template>
 
 <style lang="scss" scoped></style>

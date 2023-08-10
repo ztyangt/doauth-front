@@ -17,8 +17,8 @@ class ConfigApi {
    * @param key 配置键
    * @returns
    */
-  public one(key: string) {
-    return request.get<Auth.Config<any>>('api/config/one', { key })
+  public one<T = any>(key: string) {
+    return request.get<Auth.Config<T>>('api/config/one', { key })
   }
 
   /**
