@@ -10,6 +10,7 @@ declare namespace Auth {
     id: number
     json: null
     level: number
+    status: number
     login_time: number
     nickname: string
     remark: string

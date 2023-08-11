@@ -40,4 +40,7 @@ onMounted(() => {})
 #nprogress .bar {
   background-color: $theme-color !important;
 }
+.el-dialog {
+  max-width: 600px;
+}
 </style>

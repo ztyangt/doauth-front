@@ -49,14 +49,36 @@ class UserApi {
     })
   }
 
+  public create(
+    account: string,
+    nickname: string,
+    email: string,
+    password: string,
+    gender: number,
+    avatar: string,
+    description: string
+  ) {
+    return request.put<Auth.User>('api/users/create', {
+      account,
+      nickname,
+      email,
+      password,
+      gender,
+      avatar,
+      description
+    })
+  }
+
   /**
    * 更新用户
    * @param id 用户id
-   * @param email 邮箱
+   * @param account 账号
    * @param nickname 昵称
+   * @param email 邮箱
    * @param gender 性别
+   * @param avatar  头像
    * @param description 描述
-   * @param avatar 头像
+   * @param status 状态 0禁用 1正常
    */
   public update(
     id: number,
@@ -65,7 +87,8 @@ class UserApi {
     email?: string,
     gender?: number,
     avatar?: string,
-    description?: string
+    description?: string,
+    status?: number
   ) {
     return request.put('api/users/update', {
       id,
@@ -74,7 +97,8 @@ class UserApi {
       email,
       gender,
       avatar,
-      description
+      description,
+      status
     })
   }
 
@@ -92,10 +116,48 @@ class UserApi {
    * @param page 分页
    * @param limit 限制
    * @param where 条件语句
+   * @param onlyTrashed 只限回收站
+   * @param withTrashed 包含回收站
    * @returns
    */
-  public all(page: number, limit: number, where?: any) {
-    return request.get<Auth.UserList>('api/users/all', { page, limit, where })
+  public all(
+    page: number,
+    limit: number,
+    where?: any,
+    onlyTrashed?: boolean,
+    withTrashed?: boolean
+  ) {
+    return request.get<Auth.UserList>('api/users/all', {
+      page,
+      limit,
+      where,
+      onlyTrashed,
+      withTrashed
+    })
+  }
+
+  /**
+   * 软删除（移到回收站）
+   * @param ids 用户id列表
+   */
+  public remove(ids: number[]) {
+    return request.delete<{ ids: number[] }>('api/users/remove', { ids })
+  }
+
+  /**
+   * 真实删除
+   * @param ids 用户id列表
+   */
+  public delete(ids: number[]) {
+    return request.delete<{ ids: number[] }>('api/users/delete', { ids })
+  }
+
+  /**
+   * 恢复用户
+   * @param ids 用户id列表
+   */
+  public restore(ids: number[]) {
+    return request.put<{ ids: number[] }>('api/users/restore', { ids })
   }
 }
 

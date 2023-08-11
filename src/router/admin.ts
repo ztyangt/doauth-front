@@ -62,9 +62,9 @@ export const adminRoutes = {
       meta: { title: '盗版追踪', icon: 'crosshairs', admin: true }
     },
     {
-      path: 'user',
-      name: 'admin-user',
-      component: () => import('@/views/admin/user/index.vue'),
+      path: 'users',
+      name: 'admin-users',
+      component: () => import('@/views/admin/users/index.vue'),
       meta: { title: '用户管理', icon: 'user1', admin: true }
     },
     {
