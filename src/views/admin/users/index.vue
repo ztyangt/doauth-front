@@ -48,6 +48,9 @@ const methods = {
       state.count = res.data.count
       state.page_count = res.data.page
     }
+    if (res.code === 204) {
+      userList.value = []
+    }
     state.loading = 0
   },
 
@@ -217,7 +220,11 @@ methods.getData()
           title="批量恢复所选用户？"
         >
           <template #reference>
-            <el-button :loading="state.loading === 4" type="success">
+            <el-button
+              :loading="state.loading === 4"
+              :disabled="userList.length === 0"
+              type="success"
+            >
               <Icon name="rotateleft1" size="14px" class="mr-1" />恢复
             </el-button>
           </template>
@@ -229,7 +236,7 @@ methods.getData()
           :title="state.only_trashed ? '将选中用户彻底删除?' : '将选中用户批量移至回收站?'"
         >
           <template #reference>
-            <el-button type="danger">
+            <el-button type="danger" :disabled="userList.length === 0">
               <Icon name="trash1" size="14px" class="mr-1" />删除
             </el-button>
           </template>
