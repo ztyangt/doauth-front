@@ -13,7 +13,7 @@ const state = reactive({
   show_dialog: false,
   is_screen: false,
   eidt_index: 0, // 编辑用户索引
-  select_list: [], // 批量选中
+  select_list: [] as number[], // 批量选中
   create_user: false,
   only_trashed: false
 })
@@ -102,7 +102,7 @@ const methods = {
   /**
    * 批量选中
    */
-  handleSelect: (e) => {
+  handleSelect: (e: Auth.User[]) => {
     state.select_list = e.map((item) => item.id)
   },
 
@@ -110,7 +110,7 @@ const methods = {
    * 编辑用户
    * @param index 编辑用户索引
    */
-  handleEdit: (index) => {
+  handleEdit: (index: number) => {
     state.create_user = false
     state.eidt_index = index
     state.show_dialog = true

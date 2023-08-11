@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDark } from '@vueuse/core'
+// @ts-ignore
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 const config = reactive({
