@@ -98,7 +98,7 @@ const methods = {
   countdown: () => {
     let timer = setInterval(() => {
       timerNum.value--
-      if (timerNum.value <= 0) {
+      if (timerNum.value === 0) {
         clearInterval(timer)
         timerNum.value = countdownNum
         return
@@ -111,6 +111,7 @@ const methods = {
     adminStore.$patch({ user: data.user, token: data.token })
     useHelper.set.storage('DOAUTH_ADMIN', { ...data, time: 7200 })
     useSiteStore().initData()
+    adminStore.updateUser()
     router.replace('/admin')
   }
 }
@@ -140,6 +141,8 @@ const methods = {
           :disabled="timerNum < countdownNum"
           class="ml-1"
           plain
+          type="primary"
+          :loading="timerNum === -1"
           @click="methods.getCode"
           >{{ timerNum === countdownNum || timerNum === -1 ? '获取验证码' : timerNum }}</el-button
         >
